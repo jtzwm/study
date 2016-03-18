@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>中融信托</title>
+  <link rel="stylesheet" href="/css/framework7.min.css">
+  <link rel="stylesheet" href="/css/framework7.themes.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+<div class="panel-overlay"></div>
+<div class="panel panel-right panel-cover">
+  <div class="title-block">设置</div>
+  <div class="content-block">
+    <ul class="panel-list">
+      <li>
+        <a href="faq.html" class="item-link close-panel">
+          <div class="item-inner">
+            <div class="item-title">帮助中心</div>
+            <div class="item-media"><i class="iconfont icon-qmark"></i></div>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" class="item-link version">
+          <div class="item-inner">
+            <div class="item-title">版本说明</div>
+            <div class="item-media"><i class="iconfont icon-emark"></i></div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="bank.html" class="item-link close-panel">
+          <div class="item-inner">
+            <div class="item-title">支持银行</div>
+            <div class="item-media"><i class="iconfont icon-bankcard"></i></div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="item-link cache">
+          <div class="item-inner">
+            <div class="item-title">清除缓存</div>
+            <div class="item-media"><i class="iconfont icon-del"></i></div>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="item-link contact">
+          <div class="item-inner">
+            <div class="item-title">400-8008810</div>
+            <div class="item-media"><i class="iconfont icon-tel"></i></div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <a href="#" class="button fixed-bottom logout">退出面签</a>
+</div>
+<div class="views tabs theme-pink">
+  <div class="view view-main">
+    <!-- pages start-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="" class="icon-only back link"> <i class="icon icon-back"></i>
+          </a>
+        </div>
+        <div class="center sliding" style="left: 105px;">客户列表</div>
+        <div class="right"><a href="#" class="open-panel link icon-only"><i
+          class=" icon-menu icon-only"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pages toolbar-through navbar-through">
+      <!-- index page start-->
+      <div data-page="index" class="page index no-toolbar">
+        <div class="page-content">
+          <div class="search-bar">
+            <div class="select"><span class="selected">姓名</span>
+              <ul class="submenu">
+                <li>姓名</li>
+                <li>证件号</li>
+                <li>项目名称</li>
+              </ul>
+            </div>
+                        <span class="result"><input type="text" placeholder="请输入需要搜索的内容"/><i
+                          class="icon-search"></i></span>
+          </div>
+          <#list resultList as customer>
+           <div class="item">
+            <div class="line-title">
+              <span class="left">${customer.name}</span>
+              <span class="right">${customer.orderDate}</span>
+            </div>
+            <div class="line-content">
+              <span class="left"><span>客户号：</span>${customer.customerNo}</span>
+              <span class="right">${customer.projectName}</span>
+            </div>
+            <div class="line-content">
+              <span class="left"><span>证件号：</span>${customer.IDNo}</span>
+              <span class="right"><span>项目号：</span>${customer.projectNo}</span>
+            </div>
+          </div>
+          </#list>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar toolbar-hidden toolbar-btm"></div>
+  </div>
+</div>
+<!-- build:js -->
+<script data-main="/js/app" src="/js/libs/require.js"></script>
+<!-- endbuild -->
+</body>
+
+</html>
