@@ -1,0 +1,27 @@
+@charset "utf-8";
+.header {
+	height: 40px;
+	width: 100%;
+	background-color: #FC3;
+}
+.header_btn_div {
+	height: 100%;
+	top: 5px;
+	position: relative;
+	left: 10px;
+	
+	width:30%;  
+	float:left;  
+}
+.btn {
+	background-color: #F90;
+}
+.left_div {
+	width: 50%;
+	float:left;  
+}
+
+.right_div{
+	width: 50%;
+	float:left;  
+}

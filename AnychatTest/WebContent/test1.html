@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script language="javascript" type="text/javascript"
+	src="./javascript/anychatsdk.js" charset="GB2312"></script>
+<script language="javascript" type="text/javascript"
+	src="./javascript/anychatevent2.js" charset="GB2312"></script>
+<script language="javascript" type="text/javascript"
+	src="./javascript/test1.js" charset="GB2312"></script>
+<link href="css/test.css" rel="stylesheet" type="text/css">
+</head>
+<body onload="LogicInit()">
+	<div class="header">
+    	<div class="header_btn_div">
+		<input class="btn" id="conn" type="button" value="连接服务器" onclick="connServer()">
+		</div>
+    	<div class="header_btn_div">
+		<input class="btn"  id="enterRoom" type="button" value="进入房间" onclick="enterRoom()">
+		</div>
+	
+		<div class="header_btn_div">
+		<input class="btn"  id="exitRoom" type="button" value="退出房间" onclick="exitRoom()">
+		</div>
+    </div>
+<div class="left_div">
+    <div id="userList">
+        用户列表 
+    </div>	
+	<!-- 用于显示本地视频div-->
+	<div id="ANYCHAT_VIDEO_LOCAL_DIV" 
+		style="width: 240px; height: 180px; background-color: #E6E6E6; margin: 5px 5px 5px 5px; float: left;">
+	</div>
+</div>
+
+<div class="right_div">
+	<!-- 用于显示远程视频div-->
+	<div id="ANYCHAT_VIDEO_REMOTE_DIV"
+		style="width: 320px; height: 240px; background-color: #E6E6E6; margin: 5px 5px 5px 5px; float: left;">
+	</div>
+
+</div>
+
+
+
+</body>
+</html>
