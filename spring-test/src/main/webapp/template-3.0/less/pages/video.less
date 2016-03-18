@@ -1,0 +1,40 @@
+.video {
+  .page-content {
+    padding-bottom: 0 !important;
+  }
+  .video-box {
+    height: 456px;
+    width: 100%;
+    margin: 0 auto;
+    .flexbox();
+    //border: 1px solid @border-color;
+    margin-top: 76px;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    .you,
+    .me {
+      height: 440px;
+      width: 600px;
+    }
+    .you {
+      background: url(../images/video1.png);
+    }
+    .me {
+      background: url(../images/video2.png);
+    }
+  }
+  .video-message{
+    font-size: @font-size-normal;
+    text-align: center;
+    margin-top: 60px;
+    .icon-wrong{
+      margin-right: 30px;
+    }
+    .video-button{
+      margin-left: 30px;
+      width: 400px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}

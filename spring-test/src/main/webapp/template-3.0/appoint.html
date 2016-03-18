@@ -1,0 +1,33 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="#" class="icon-only back link appoint-back">
+				<i class="icon icon-back"></i>
+			</a>
+		</div>
+
+		<div class="center sliding" style="left: 105px;">视频预约</div>
+		<div class="right">
+			<a href="#" class="open-panel link icon-only">
+				<i class=" icon-menu icon-only"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages toolbar-through navbar-through">
+	<div data-page="appoint" class="page appoint">
+		<div class="page-content">
+			<div style="padding: 0; margin-right: 0px; width: 100%" class="content-block-inner">
+				<div id="calendar-inline-container"></div>
+				<input type="hidden" id="dayStr" />
+				<input type="hidden" id="status" value="${status}" />
+			</div>
+			<ul class="choose-time">
+			</ul>
+			<!--fixed button-->
+			<script type="text/template" id="appointBtnFix">
+				<a href="#" id="nextPass" class="button btm-button">下一步</a>
+			</script>
+		</div>
+	</div>
+</div>

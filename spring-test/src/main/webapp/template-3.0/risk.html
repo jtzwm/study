@@ -1,0 +1,39 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="" class="icon-only back link risk-back">
+				<i class="icon icon-back"></i>
+			</a>
+		</div>
+		<div class="center sliding" style="left: 105px;">风险测评</div>
+		<div class="right">
+			<a href="#" class="open-panel link icon-only">
+				<i class=" icon-menu icon-only"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages toolbar-through navbar-through">
+	<!-- index page start-->
+	<div data-page="risk" class="page risk">
+		<div class="page-content" id="riskContent">
+			<script id="riskTemplate" type="text/template">
+        	{{#each model.questions}}
+            <div class="question" id="topic_{{index}}" data-questionno={{question_no}}>
+                <div class="question-title">{{question_no}}. {{topic}} {{#if multi}}<span class="sub-title">（多选）</span>{{/if}}</div>
+                <ul class="select {{#if multi}}multiple{{/if}}">
+                	{{#options}}
+                    	<li data-answervalue={{value}} class="item {{#if checked}}checked{{/if}}"><span>{{option}}</span></li>
+                    {{/options}}
+                </ul>
+            </div>
+            {{/each}}
+			</script>
+			<!--fixed button-->
+			<script type="text/template" id="riskBtnFix">
+                <a href="#" class="button btm-button risk-next-button">提交</a>
+            </script>
+
+		</div>
+	</div>
+</div>

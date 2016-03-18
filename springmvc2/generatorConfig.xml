@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 需要显示指定数据库驱动 -->
+	<classPathEntry
+		location="C:\Users\zhuweiming\.m2\repository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar" />
+	<context id="context1">
+		<!-- 数据库连接信息 -->
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@localhost:1521:cairh" userId="zrxtcs"
+			password="123456" />
+			
+		<javaModelGenerator targetPackage="com.zhuwm.mybatis.entity"
+			targetProject="springmvc2">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 配置文件，如果使用spring整合的话，要和dao在同一个包中 -->
+		<sqlMapGenerator targetPackage="com.zhuwm.mybatis.mapper"
+			targetProject="springmvc2" />
+		<javaClientGenerator targetPackage="com.zhuwm.mybatis.mapper"
+			targetProject="springmvc2" type="XMLMAPPER" />
+		<table schema="ZRXTCS" tableName="PROJECTS"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			
+		</table>
+	</context>
+</generatorConfiguration>

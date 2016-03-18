@@ -1,0 +1,49 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="" class="icon-only back link" id="perpareback">
+				<i class="icon icon-back"></i>
+			</a>
+		</div>
+		<div class="center sliding" style="left: 105px;">视频预约</div>
+		<div class="right">
+			<a href="#" class="open-panel link icon-only">
+				<i class=" icon-menu icon-only"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages toolbar-through navbar-through">
+	<!-- index page start-->
+	<div data-page="prepare" class="page prepare no-toolbar">
+		<div class="page-content">
+			<div class="wait">
+				<div class="wait-time" id="waitVideo" style="display: none;">
+					<span class="wast-time"></span>
+				</div>
+				<div class="wait-time start" id="startVideo" style="display: none;">
+					<span class="wast-time">开始视频</span>
+				</div>
+				<div class="wait-time" id="overdue" style="display: none;">
+					<span class="wast-time">预约过期</span>
+				</div>
+				<div class="wait-time" id="videoFailed" style="display: none;">
+					<span class="wast-time">确认资料</span>
+				</div>
+				<div class="wait-time start" id="videoError" style="display: none;">
+					<span class="wast-time">重新视频</span>
+				</div>
+				<p class="countdown">倒计时</p>
+				<p class="time">
+					预约时间：
+					<span id="timeStr"></span>
+					<a href="#" class="modify">修改时间</a>
+				</p>
+			</div>
+		</div>
+		<input id="videoServer" type="hidden" value="${videoServer}">
+		<input id="videoPort" type="hidden" value="${videoPort}">
+		<input id="contractId" type="hidden" value="${contractId}">
+		<input id="appointLimitTime" type="hidden" value="${appointLimitTime}">
+	</div>
+</div>

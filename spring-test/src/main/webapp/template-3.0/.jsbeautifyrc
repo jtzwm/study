@@ -1,0 +1,9 @@
+{
+	"html":{
+		"indent_char": " ",
+		"indent_size": 2
+	},
+	"js":{
+		"indent_with_tab":true
+	}
+}

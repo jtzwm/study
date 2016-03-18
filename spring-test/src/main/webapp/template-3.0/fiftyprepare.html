@@ -1,0 +1,37 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="" class="icon-only back link" id="fiftyBack">
+				<i class="icon icon-back"></i>
+			</a>
+		</div>
+		<div class="center sliding" style="left: 105px;">等待风险测评</div>
+		<div class="right">
+			<a href="#" class="open-panel link icon-only">
+				<i class=" icon-menu icon-only"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages toolbar-through navbar-through">
+	<!-- index page start-->
+	<div data-page="fiftyprepare" class="page prepare no-toolbar">
+		<div class="page-content">
+			<div class="wait">
+				<div class="wait-time">
+					<span class="wast-time"></span>
+				</div>
+				<p class="countdown">倒计时</p>
+				<p class="time">
+					预约时间：
+					<span id="waitTimeStr"></span>
+					<a href="#" id="changeBtn" class="modify">修改时间</a>
+				</p>
+
+				<p class="sm-tip">倒计时时间小于${riskLimitTime}分钟时可开始风险测评</p>
+			</div>
+		</div>
+		<input id="riskLimitTime" type="hidden" value="${riskLimitTime}">
+		<input id="appointLimitTime" type="hidden" value="${appointLimitTime}">
+	</div>
+</div>

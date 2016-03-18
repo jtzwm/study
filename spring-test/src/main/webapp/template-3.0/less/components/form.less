@@ -1,0 +1,46 @@
+ul.form{
+  list-style: none;
+  padding-left: 20px;
+  background: #fff;
+  border-bottom: 2px solid @border-color;
+  .item{
+    //height: 78px;
+    line-height: 78px;
+    .flexbox();
+    border-bottom: 2px solid @border-color;
+    .title{
+      .flex(1);
+      text-align: left;
+      color: @light-font-color;
+    }
+    .input{
+      .flex(2);
+      text-align: right;
+      color: @font-color;
+      padding-right: 20px;
+    }
+  }
+  .home-tel{
+    border: none;
+    .input{
+      .area-code{
+        width: 90px;
+        height: 54px;
+        line-height: 54px;
+        border: 1px solid @border-color;
+        display: inline-block;
+        .rounded(4px);
+        padding: 0 14px;
+      }
+      .tel-num{
+        width:  150px;
+        height: 54px;
+        line-height: 54px;
+        border: 1px solid @border-color;
+        display: inline-block;
+        .rounded(4px);
+        padding: 0 16px;
+      }
+    }
+  }
+}

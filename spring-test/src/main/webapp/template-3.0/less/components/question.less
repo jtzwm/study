@@ -1,0 +1,35 @@
+.question {
+  color: @font-color;
+  .question-title {
+    height: 82px;
+    line-height: 82px;
+    text-indent: 22px;
+    .sub-title{
+      color: @light-font-color;
+      font-size: @font-size-small;
+    }
+  }
+  .select {
+    list-style: none;
+    border-bottom: 2px solid @border-color;
+    padding: 0;
+    text-indent: 22px;
+    background: #fff;
+    margin: 0;
+    .item {
+      height: 74px;
+      line-height: 74px;
+      border-top: 2px solid @border-color;
+      position: relative;
+    }
+    .item.checked{
+      &:after{
+        position: absolute;
+        content:"";
+        .icon-tick;
+        right: 22px;
+        top: 18px;
+      }
+    }
+  }
+}

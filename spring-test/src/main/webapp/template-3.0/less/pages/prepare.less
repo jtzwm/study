@@ -1,0 +1,37 @@
+.prepare {
+  .wait-time {
+    width: 270px;
+    height: 270px;
+    background: url(../images/wave@2x.gif);
+    margin: ~"30% auto 0";
+    position: relative;
+    .wast-time {
+      font-size: @font-size-big;
+      color: #fff;
+      position: absolute;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%,-50%);
+      -moz-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      -o-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+    }
+  }
+  .wait-time.start{
+    background: #37D241;
+    .rounded(50%);
+  }
+  p {
+    text-align: center;
+  }
+  .countdown {
+    color: @light-font-color;
+  }
+  .time {
+    //font-weight: bold;
+  }
+}

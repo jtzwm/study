@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="expires" content="0">
+<title>中融信托</title>
+<link rel="stylesheet" href="/template-3.0/css/framework7.min.css">
+<link rel="stylesheet" href="/template-3.0/css/framework7.themes.min.css">
+<link rel="stylesheet" href="/template-3.0/css/app.css">
+<script src="template-3.0/js/common.js"></script>
+</head>
+
+<body>
+	<div class="panel-overlay"></div>
+	<div class="panel panel-right panel-cover">
+		<div class="title-block">设置</div>
+		<div class="content-block">
+			<ul class="panel-list">
+				<li>
+					<a href="#" id="clearcache" class="item-link cache">
+						<div class="item-inner">
+							<div class="item-title">预约列表</div>
+							<div class="item-media">
+								<i class="iconfont icon-del"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<a href="#" class="button fixed-bottom logout">退出面签</a>
+	</div>
+	<div class="views tabs theme-pink">
+		<div class="view view-main">
+			<!-- pages start-->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="left">
+						<a href="" id="indexBack" class="icon-only back link">
+							<i class="icon icon-back"></i>
+						</a>
+					</div>
+					<div class="center sliding" style="left: 105px;">客户列表</div>
+					<div class="right">
+						<a href="#" class="open-panel link icon-only">
+							<i class=" icon-menu icon-only"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="pages toolbar-through navbar-through">
+				<!-- index page start-->
+				<div data-page="index" class="page index no-toolbar">
+					<div class="page-content" id="indexContent">
+						<script id="indexTemplate" type="text/template">
+						<!-- <div class="search-bar">
+                        <div class="select"><span class="selected">姓名</span>
+                            <ul class="submenu">
+                                <li>年龄</li>
+                                <li>性别</li>
+                                <li>姓名</li>
+                            </ul>
+                        </div>
+                        <span class="result"><input type="text" id="search_context" placeholder="请输入需要搜索的内容"/><i
+                                class="icon-search"></i></span>
+                    	</div> -->
+						{{#each model.list}}
+						<div class="item">
+							<div class="line-title">
+								<span class="left">{{client_name}}</span>
+								<span class="right">{{witness_effecitve_start}}</span>
+							</div>
+							<div class="line-content">
+								<span class="left">
+									<span>客户号：</span>
+									{{client_id}}
+								</span>
+								<span class="right">{{project_name}}</span>
+							</div>
+							<div class="line-content">
+								<span class="left">
+									<span>证件号：</span>
+									{{identify_code}}
+								</span>
+								<span class="right">
+									<span>项目号：</span>
+									{{project_no}}
+								</span>
+							</div>
+							<input type="hidden" class="authCode" value="{{auth_code}}">
+							<input type="hidden" class="preengageNo" value="{{preengage_no}}">
+						</div>
+						{{/each}}
+						</script>
+					</div>
+				</div>
+			</div>
+			<div class="toolbar toolbar-hidden toolbar-btm"></div>
+		</div>
+	</div>
+	<!-- build:js -->
+	<script data-main="/template-3.0/js/app" src="/template-3.0/js/libs/require.js"></script>
+	<!-- endbuild -->
+</body>
+
+</html>

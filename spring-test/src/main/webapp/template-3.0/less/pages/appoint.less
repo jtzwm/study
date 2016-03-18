@@ -1,0 +1,35 @@
+.appoint{
+  .choose-time{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    .item{
+      height: 80px;
+      line-height: 80px;
+      font-size: @font-size-normal;
+      background: #fff;
+      border-bottom: 1px solid @border-color;
+      position: relative;
+      .time{
+        color: @font-color;
+        margin-left: 36px;
+      }
+      .isfree{
+        margin-left: 60px;
+        color: @light-font-color;
+        .num{
+          color: @btn-color;
+        }
+      }
+    }
+    .item.active{
+      &:after{
+        content: '';
+        position: absolute;
+        right: 30px;
+        top: 24px;
+        .icon-tick();
+      }
+    }
+  }
+}

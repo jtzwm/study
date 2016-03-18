@@ -1,0 +1,72 @@
+html {
+  //font-size: 10px;
+  font-size: 62.5%;
+  color: @font-color;
+}
+
+body {
+  font-size: @font-size-normal;
+  color: @font-color;
+  font-family: "微软雅黑", Arial, sans-serif;
+  background-color: @bg-color;
+}
+* {
+  .border-box();
+}
+
+button {
+  border: none;
+  outline: none;
+  height: 80px;
+  line-height: 80px;
+  font-size: @font-size-normal;
+  width: 100%;
+  margin: 0 auto;
+}
+// font-size
+@font-size-normal: 2.6rem;
+@font-size-big: 4rem;
+@font-size-small: 2rem;
+
+// color
+@theme-color: #b03b3b;
+@bg-color: #f0f0f0;
+@btn-color: #b61328;
+@font-color: #000000;
+@light-font-color: #838383;
+@border-color: #e1e1e1;
+.page {
+  background: @bg-color;
+}
+.navbar{
+  height: 70px;
+  line-height: 70px;
+  font-size: @font-size-normal;
+}
+.navbar-inner {
+  font-size: @font-size-normal!important;
+  background-color: @theme-color;
+  color: #fff;
+  a {
+    color: #fff;
+  }
+  .center{
+    font-size: @font-size-normal;
+  }
+}
+.page-content{
+  padding-bottom: 120px!important;
+}
+.navbar-fixed .page-content, .navbar-through .page-content{
+  padding-top: 70px;
+}
+.button{
+  background: @btn-color;
+  height: 78px;
+  line-height: 78px;
+  color:#fff!important;
+  font-size: @font-size-normal;
+}
+
+
+

@@ -1,0 +1,47 @@
+.finish {
+  position: relative;
+  .text-hint {
+    font-size: 3rem;
+  }
+  ul.form {
+    margin-bottom: 0;
+    border: none;
+    border-top: 1px solid @border-color;
+    .item {
+      border: none;
+    }
+    .title {
+      .flex(2);
+      text-indent: 100px;
+    }
+    .input {
+      .flex(3);
+      text-align: left;
+      padding-left: 80px;
+    }
+  }
+  .text-hint {
+    margin-left: 18px;
+    color: @font-color;
+    display: inline-block;
+    height: 85px;
+    line-height: 85px;
+    vertical-align: middle;
+  }
+  .reve {
+    background: transparent;
+    color: @btn-color !important;
+    width: 92%;
+    margin: 0 auto;
+  }
+  .wrong-message {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+  }
+
+  .no-margin {
+    margin-top: 0;
+  }
+}

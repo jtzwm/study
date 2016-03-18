@@ -1,0 +1,43 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<!-- <a href="" class="icon-only back link identity-back">
+				<i class="icon icon-back"></i>
+			</a> -->
+		</div>
+		<div class="center sliding" style="left: 105px;">资料填写</div>
+		<div class="right">
+			<a href="#" class="open-panel link icon-only">
+				<i class=" icon-menu icon-only"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages toolbar-through navbar-through">
+	<!-- index page start-->
+	<div data-page="identity" class="page identity">
+		<div class="page-content">
+			<ul class="form">
+				<li class="item">
+					<span class="title">姓名</span>
+					<span class="input">${resultData.model.client_name!}</span>
+				</li>
+				<li class="item">
+					<span class="title">证件号</span>
+					<span class="input">${resultData.model.identify_code!}</span>
+				</li>
+				<li class="item">
+					<span class="title">项目名称</span>
+					<span class="input">${resultData.model.project_name!''}</span>
+				</li>
+				<li class="item">
+					<span class="title">预约金额</span>
+					<span class="input">${resultData.model.contract_amount}万元</span>
+				</li>
+			</ul>
+			<script type="text/template" id="identityBtnFix">
+				<a href="#" id="identityNext" class="button btm-button">下一步</a>
+			</script>
+		</div>
+	</div>
+</div>
