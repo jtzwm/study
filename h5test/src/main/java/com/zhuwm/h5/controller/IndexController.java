@@ -27,7 +27,7 @@ public class IndexController  extends DispatcherServlet {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("resultList",CustomeList);
 		//mav.addObject("customerNo", "fuck freemarker");
-		mav.setViewName("/index");
+		mav.setViewName("f7test/index");
 		return mav;
 	}
 
