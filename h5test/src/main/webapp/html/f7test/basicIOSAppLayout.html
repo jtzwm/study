@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- Required meta tags-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- Your app title -->
+		<title>My App</title>
+		<!-- Path to Framework7 Library CSS, iOS Theme -->
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<!-- Path to Framework7 color related styles, iOS Theme -->
+		<link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+		<!-- Path to your custom app styles-->
+		<link rel="stylesheet" href="css/my-app.css">
+	</head>
+
+	<body>
+		<!-- Status bar overlay for full screen mode (PhoneGap) -->
+		<div class="statusbar-overlay"></div>
+		<!-- Views -->
+		<div class="views">
+			<!-- Your main view, should have "view-main" class -->
+			<div class="view view-main">
+				<!-- Top Navbar-->
+				<div class="navbar">
+					<div class="navbar-inner">
+						<!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+						<div class="left">Left</div>
+						<div class="center sliding">Awesome App</div>
+						<div class="right">Right</div>
+					</div>
+				</div>
+				<!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+				<div class="pages navbar-through toolbar-through">
+
+
+					<!-- Page, "data-page" contains page name -->
+					<div data-page="index" class="page">
+						<!-- Scrollable page content -->
+						<div class="page-content">
+
+							<div class="row  no-gutter">
+								<!-- Each "cell" has col-[widht in percents] class -->
+								<div class="col-33">客户姓名</div>
+								<div class="col-66">信息</div>
+							</div>
+
+							<div class="list-block">
+								<ul>
+									<li>
+										<div class="item-content">
+											<div class="item-inner">
+												<div class="item-title">
+													客户信息
+												</div>
+												<div class="item-after">
+													List element label
+												</div>
+											</div>
+										</div>
+									</li>
+
+								</ul>
+							</div>
+
+							<div class="item">
+								<div class="line-title">
+									<span class="left">王小明</span>
+									<span class="right">2015-6-7 12:12</span>
+								</div>
+								<div class="line-content">
+									<span class="left"><span>客户号：</span>123123123</span>
+									<span class="right">xxx信托产品</span>
+								</div>
+								<div class="line-content">
+									<span class="left"><span>证件号：</span>123123123</span>
+									<span class="right"><span>项目号：</span>3333333333323423</span>
+								</div>
+							</div>
+
+							<p>Page content goes here</p>
+							<!-- Link to another page -->
+							<a href="about.html">About app</a>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Bottom Toolbar-->
+				<div class="toolbar">
+					<div class="toolbar-inner">
+						<!-- Toolbar links -->
+						<a href="#" class="link">Link 1</a>
+						<a href="#" class="link">Link 2</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="js/my-app.js"></script>
+	</body>
+
+</html>

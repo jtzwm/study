@@ -1,59 +1,97 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <!-- Your app title -->
-    <title>手机测试</title>
-    <!-- Path to Framework7 Library CSS, iOS Theme -->
-    <link rel="stylesheet" href="/css/framework7.ios.min.css">
-    <!-- Path to Framework7 color related styles, iOS Theme -->
-    <link rel="stylesheet" href="/css/framework7.ios.colors.min.css">
-    <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="/css/app.css">
-  </head>
-  <body>
-    <!-- Status bar overlay for full screen mode (PhoneGap) -->
-    <div class="statusbar-overlay"></div>
-    <!-- Views -->
-    <div class="views">
-      <!-- Your main view, should have "view-main" class -->
-      <div class="view view-main">
-        <!-- Top Navbar-->
-        <div class="navbar">
-          <div class="navbar-inner">
-            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-            <div class="center sliding">Awesome App</div>
-          </div>
-        </div>
-        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
-          <!-- Page, "data-page" contains page name -->
-          <div data-page="index" class="page">
-            <!-- Scrollable page content -->
-            <div class="page-content">
-              <p>测试下</p>
-              <!-- Link to another page -->
-              <a href="about.html">关于</a>
-            </div>
-          </div>
-        </div>
-        <!-- Bottom Toolbar-->
-        <div class="toolbar">
-          <div class="toolbar-inner">
-            <!-- Toolbar links -->
-            <a href="#" class="link">Link 1</a>
-            <a href="#" class="link">Link 2</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="/js/libs/framework7.min.js"></script>
-    <!-- Path to your app js-->
-    <script type="text/javascript" src="/js/f7test/my-app.js"></script>
-  </body>
-</html> 
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2196f3">
+<title>金玉满堂</title>
+<link rel="stylesheet" href="css/framework7.min.css">
+<link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body>
+
+	<div class="statusbar-overlay"></div>
+	<div class="panel-overlay"></div>
+	<div class="panel panel-left panel-reveal">
+		<div class="content-block">
+			<p>登录</p>
+			<p>注销</p>
+			<p>设置</p>
+		</div>
+	</div>
+
+	<div class="views">
+		<div class="view view-main">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="left">
+						<a href="#" class="link icon-only"> <i class="icon icon-back"></i>
+						</a>
+					</div>
+					<div class="center sliding">金玉满堂</div>
+					<div class="right">
+						<a href="#" class="link icon-only open-panel"> <i
+							class="icon icon-bars"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="pages navbar-fixed toolbar-fixed">
+				<div data-page="index" class="page">
+					<div class="content-block-title"></div>
+					<div class="content-block">
+						<div class="row ">
+							<div class="col-25">代码</div>
+							<div class="col-25">名称</div>
+							<div class="col-25">现价</div>
+							<div class="col-25">涨跌</div>
+						</div>
+					</div>
+
+					<div class="list-block">
+						<ul>
+							<li class="item-content">
+								<div class="item-inner">000001</div>
+								<div class="item-inner">上证指数</div>
+								<div class="item-inner">3500.13</div>
+								<div class="item-inner">8.13%</div>
+							</li>
+
+							<li class="item-content">
+								<div class="item-inner">600518</div>
+								<div class="item-inner">康美药业</div>
+								<div class="item-inner">17.11</div>
+								<div class="item-inner">0.13%</div>
+							</li>
+
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="toolbar">
+				<div class="toolbar-inner">
+					<a href="index.html" class="link">自选</a> <a
+						href="personal-center.html" class="link">个人中心</a> <a
+						href="trade.html" class="link">交易</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- Path to Framework7 Library JS-->
+	<script type="text/javascript" src="js/libs/framework7.js"></script>
+	<script type="text/javascript" src="js/libs/require.js"></script>
+	<script data-main="js/my-app" src="js/f7test/my-app.js"></script>
+
+</body>
+
+</html>

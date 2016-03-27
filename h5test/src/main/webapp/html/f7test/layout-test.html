@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>My App</title>
+		<!-- Path to Framework7 Library CSS-->
+		<link rel="stylesheet" href="css/framework7.ios.min.css">
+		<!-- Path to your custom app styles-->
+		<link rel="stylesheet" href="css/my-app.css">
+	</head>
+
+	<body>
+
+		<!-- First, we need to add Panel's overlay that will overlays app while panel is opened -->
+		<div class="panel-overlay"></div>
+
+		<!-- Left panel, let it be with reveal effect -->
+		<div class="panel panel-left panel-reveal">
+			<p>Left Panel content here</p>
+			<!-- Click on link with "close-panel" class will close panel -->
+			<p><a href="#" class="close-panel">关闭</a></p>
+			<!-- Click on link with "open-panel" and data-panel="right" attribute will open Right panel -->
+			<p><a href="#" data-panel="right" class="open-panel">Open Right Panel</a></p>
+		</div>
+
+		<!-- Right panel, with cover effect -->
+		<div class="panel panel-right panel-cover">
+			... panel content goes here ...
+		</div>
+
+		<div class="views">
+			<div class="view view-main">
+				<div class="pages">
+
+					<div class="popup popup-about">
+						<div class="content-block">
+							<p>About</p>
+							<p><a href="#" class="close-popup">Close popup</a></p>
+							<p>Lorem ipsum dolor ...</p>
+						</div>
+					</div>
+
+					<!-- Now we need additional "navbar-fixed" and "toolbar-fixed" classes on Page -->
+					<div data-page="index" class="page navbar-fixed toolbar-fixed">
+
+						<!-- Top Navbar-->
+						<div class="navbar">
+							<div class="navbar-inner">
+								<div class="left">
+									<i class="icon icon-back"></i>
+									<span>返回</span>
+
+								</div>
+								<div class="center">我的首页-长度测试1234567890</div>
+								<div class="right">
+									<a href="#" class="link icon-only open-panel">
+										<i class="icon icon-bars"></i>
+
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- /End of Top Navbar-->
+
+						<div class="page-content">
+
+							<div class="row">
+								<!-- Each "cell" has col-[widht in percents] class -->
+								<div class="col-50">
+									<a href="#" class="login-modal">Login Modal</a>
+								</div>
+								<div class="col-50">
+									<a href="#" data-popup=".popup-about" class="open-popup">Open About Popup </a>
+								</div>
+							</div>
+
+							<div class="row">
+								<!-- Each "cell" has col-[widht in percents] class -->
+								<div class="col-50">
+									<a href="#" class="alert-text"> Alert with text</a>
+								</div>
+								<div class="col-50">50%</div>
+							</div>
+
+							<div class="row no-gutter">
+								<div class="col-80">
+									<a href="#" class="confirm-ok-cancel">
+										Confirm with text, Ok and Cancel callbacks</a>
+								</div>
+								<div class="col-20">20%</div>
+
+							</div>
+
+							<div class="row no-gutter">
+								<div class="col-50">
+									<a href="#" class="prompt-title-ok">Prompt with text, title and Ok callback</a>
+								</div>
+								<div class="col-50">50%</div>
+							</div>
+
+							<div class="content-block-title">Content block title</div>
+							<div class="content-block">
+								<div class="content-block-inner">Here comes another text block additionaly wrapped with "content-block-inner". Praesent nec imperdiet diam. Maecenas vel lectus porttitor, consectetur magna nec, viverra sem. Aliquam sed risus dolor. Morbi tincidunt ut libero id sodales. Integer
+									blandit varius nisi quis consectetur. </div>
+							</div>
+
+							<div class="content-block-title">Tablet Inset</div>
+							<!-- This block will be inset only on tablets -->
+							<div class="content-block tablet-inset">
+								<div class="content-block-inner">
+									<p>Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Bottom Toolbar-->
+						<div class="toolbar">
+							<div class="toolbar-inner">
+								Hello
+							</div>
+						</div>
+						<!-- /End of Bottom Toolbar-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="js/layout-test.js"></script>
+	</body>
+
+</html>

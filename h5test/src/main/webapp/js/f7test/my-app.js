@@ -1,15 +1,36 @@
-/**
- * 
- */
+require.config({
+	baseUrl: 'js/f7test',
+	paths: {
+		Framework7: '/h5test/js/libs/framework7',
+		TestJs: 'test'
 
-// Initialize app
-var myApp = new Framework7();
+	},
+	shim: {
+		Framework7: {
+			exports: 'Framework7'
+		},
+		TestJs: {
+			exports: 'init'
+		}
+	}
 
-// If we need to use custom DOM library, let's save it to $$ variable:
-var $$ = Framework7.$;
+});
 
-// Add view
-var mainView = myApp.addView('.view-main', {
-  // Because we want to use dynamic navbar, we need to enable it for this view:
-  dynamicNavbar: true
+
+require(['Framework7', 'router','test'], function(Framework7, Router,TestJs) {
+	//alert("fuck");
+	window.$$ = window.Dom7;
+	//window.jtoJHandle.removeCookie();
+	window.App = new Framework7();
+
+	window.mainView = window.App.addView('.view-main', {
+		dynamicNavbar: true
+	});
+
+	init();
+
+//	require(['trade'], function(Trade) {
+//		Trade.init();
+//	});
+//	Router.init();
 });
