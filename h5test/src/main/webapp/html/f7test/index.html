@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#2196f3">
 <title>金玉满堂</title>
 <link rel="stylesheet" href="css/framework7.min.css">
+<link rel="stylesheet" href="css/framework7.themes.min.css">
 <link rel="stylesheet" href="css/app.css">
 
 </head>
@@ -44,46 +45,51 @@
 
 			<div class="pages navbar-fixed toolbar-fixed">
 				<div data-page="index" class="page">
-					<div class="content-block-title"></div>
-					<div class="content-block">
-						<div class="row ">
-							<div class="col-25">代码</div>
-							<div class="col-25">名称</div>
-							<div class="col-25">现价</div>
-							<div class="col-25">涨跌</div>
+					<div class="page-content">
+
+						<div class="buttons-row index-button">
+							<a href="#" id="openAccountBtn" class="button button-round ">开户</a> 
+							<a href="#" class="button button-round ">网厅</a> 
+							<a href="#" class="button button-round ">商城</a>
+						</div>
+						<div class="content-block-title"></div>
+						<div class="content-block">
+							<div class="row ">
+								<div class="col-25">代码</div>
+								<div class="col-25">名称</div>
+								<div class="col-25">现价</div>
+								<div class="col-25">涨跌</div>
+							</div>
+						</div>
+
+						<div class="list-block">
+							<ul>
+								<li class="item-content">
+									<div class="item-inner">000001</div>
+									<div class="item-inner">上证指数</div>
+									<div class="item-inner">3500.13</div>
+									<div class="item-inner">8.13%</div>
+								</li>
+
+								<li class="item-content">
+									<div class="item-inner">600518</div>
+									<div class="item-inner">康美药业</div>
+									<div class="item-inner">17.11</div>
+									<div class="item-inner">0.13%</div>
+								</li>
+
+							</ul>
 						</div>
 					</div>
-
-					<div class="list-block">
-						<ul>
-							<li class="item-content">
-								<div class="item-inner">000001</div>
-								<div class="item-inner">上证指数</div>
-								<div class="item-inner">3500.13</div>
-								<div class="item-inner">8.13%</div>
-							</li>
-
-							<li class="item-content">
-								<div class="item-inner">600518</div>
-								<div class="item-inner">康美药业</div>
-								<div class="item-inner">17.11</div>
-								<div class="item-inner">0.13%</div>
-							</li>
-
-						</ul>
-					</div>
-
 				</div>
 
 			</div>
 
 			<div class="toolbar">
 				<div class="toolbar-inner">
-					<a href="index.do" class="link">首页</a> 
-					<a href="choicedStock.do" class="link">自选股</a> 
-					<a href="perCenter.do"
-						class="link">个人中心</a> 
-						<a href="trade.do" class="link">交易</a>
+					<a href="index.do" class="link">首页</a> <a href="choicedStock.do"
+						class="link">自选股</a> <a href="perCenter.do" class="link">个人中心</a>
+					<a href="trade.do" class="link">交易</a>
 				</div>
 			</div>
 		</div>

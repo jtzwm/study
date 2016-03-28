@@ -7,13 +7,13 @@ define([ 'utils'], function(Utils) {
 	} ];
 
 	function init() {
-		alert("4444444  trade.init");
+		console.log("tradeController:init");
 		Utils.bindEvents(bindings);
 
 	}
 	
 	function test(){
-		alert("55555555555555");
+		console.log("tradeController:test by click event");
 	}
 
 	return {
