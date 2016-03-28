@@ -33,5 +33,5 @@ require(['Framework7', 'router','test'], function(Framework7, Router,TestJs) {
 //		Trade.init();
 //	});
 	Router.init();
-	Router.load('controller/indexController');
+	Router.load('index');
 });

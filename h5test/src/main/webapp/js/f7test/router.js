@@ -8,7 +8,7 @@ define([], function() {
         $$(document).on('pageBeforeInit', function(e) {
         	
             var page = e.detail.page;
-            alert("router.init==="+page.name);
+            //alert("router.init==="+page.name);
             load(page.name, page.query);
         });
     }
@@ -19,14 +19,14 @@ define([], function() {
      * @param  query
      */
     function load(jsFileName, query) {
-    	alert("router.load==="+jsFileName);
+    	//alert("router.load==="+jsFileName);
         if (!jsFileName) {
             return;
         }
         if (jsFileName.indexOf('smart-select') !== -1) {
             return;
         }
-        require([jsFileName], function(controller) {
+        require(['controller/' + jsFileName + 'Controller'], function(controller) {
             controller.init();
         });
     }
