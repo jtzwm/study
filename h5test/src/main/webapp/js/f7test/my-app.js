@@ -27,10 +27,11 @@ require(['Framework7', 'router','test'], function(Framework7, Router,TestJs) {
 		dynamicNavbar: true
 	});
 
-	init();
+	//init();
 
 //	require(['trade'], function(Trade) {
 //		Trade.init();
 //	});
-//	Router.init();
+	Router.init();
+	Router.load('controller/indexController');
 });

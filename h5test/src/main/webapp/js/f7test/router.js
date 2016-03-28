@@ -4,9 +4,11 @@ define([], function() {
      * Init router, that handle page events
      */
     function init() {
-    	alert("router.init");
+    	
         $$(document).on('pageBeforeInit', function(e) {
+        	
             var page = e.detail.page;
+            alert("router.init==="+page.name);
             load(page.name, page.query);
         });
     }

@@ -1,3 +1,3 @@
 function init() {
-//	alert("====test.init");
+	alert("====test.init");
 }
