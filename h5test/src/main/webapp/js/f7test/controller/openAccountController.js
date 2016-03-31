@@ -11,7 +11,6 @@ define([ 'utils'], function(Utils) {
 		Utils.bindEvents(bindings);
 
 	}
-
 	
 	function jtojOpenAndroidActivity(){
 		
@@ -20,8 +19,6 @@ define([ 'utils'], function(Utils) {
 	function openAccount(){
 		window.J2J.openVideo();
 		console.log("openAccountController:test by click event");
-		alert("openAccountController:alert:fuck ");
-		window.demo.openVideo();
 	}
 
 	return {
