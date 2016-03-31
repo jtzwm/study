@@ -17,7 +17,7 @@ define([ 'utils'], function(Utils) {
 	}
 	
 	function openAccount(){
-		window.J2J.openVideo();
+		window.demo.openVideo();
 		console.log("openAccountController:test by click event");
 	}
 
