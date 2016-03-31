@@ -13,6 +13,10 @@ define([ 'utils'], function(Utils) {
 	}
 
 	
+	function jtojOpenAndroidActivity(){
+		
+	}
+	
 	function openAccount(){
 		window.J2J.openVideo();
 		console.log("openAccountController:test by click event");
