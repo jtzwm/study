@@ -1,5 +1,7 @@
 package com.zhuwm.redis;
 
+import java.util.List;
+
 import com.zhuwm.redis.jedis.JedisUtil;
 
 import redis.clients.jedis.Jedis;
@@ -33,6 +35,10 @@ public class  OnLineUserImpl {
 	 */
 	public Long getQueueCount(){
 		return jedis.llen(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME);
+	}
+	
+	public List<String> getQueueUserList(){
+		return jedis.lrange(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, 0, -1);
 	}
 	
 	/**
