@@ -12,6 +12,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
+import com.zhuwm.redis.OnLineUserImpl;
+
 @ServerEndpoint(value = "/websocket/{user}")  
 public class WebScoketServer  {
 
@@ -26,7 +28,11 @@ public class WebScoketServer  {
         this.session = session;  
           
         Log.info("*** WebSocket opened from sessionId " + session.getId()+",user:"+userId);
-        sessionUserMap.put(session.getId(), userId);
+        
+        OnLineUserImpl onlineUser= new OnLineUserImpl();
+        onlineUser.putUserToQueue(userId);
+        onlineUser.releaseJedis();
+        
         WebScoketServerAdvisor.putSession(session,userId);
         
     }  

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,12 +18,14 @@ public class JedisUtilTest {
 	    
 	    @Before
 	    public void setup() {
-	        //连接redis服务器，192.168.0.100:6379
-	        //jedis = new Jedis("192.168.3.75", 6379);
-	        //权限认证
-	        //jedis.auth("admin");
 	    	jedis=JedisUtil.getJedis();
 	    }
+	    
+		@After
+		public void tearDown() throws Exception {
+			JedisUtil.returnResource(jedis);
+			
+		}
 	    
 	    /**
 	     * redis存储字符串
