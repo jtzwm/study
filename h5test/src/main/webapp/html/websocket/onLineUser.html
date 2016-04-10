@@ -5,9 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-在线用户数：
+在线用户数：${userCount}
+<p>
 
-在线用户列表：
-
+在线用户列表：<p>
+<#list resultList as usr>
+${usr} <a href="#" onclick="sendMessage('${usr}')">给此用户发消息</a> <p>
+</#list>
 </body>
+<script type="text/javascript">
+function sendMessage(userID)
+{
+	
+window.location.href="sendMessage.do?userID="+userID;
+}
+</script>
+
 </html>
