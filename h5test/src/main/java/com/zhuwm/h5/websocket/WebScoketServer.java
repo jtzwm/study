@@ -33,7 +33,7 @@ public class WebScoketServer  {
         onlineUser.putUserToQueue(userId);
         onlineUser.releaseJedis();
         
-        WebScoketServerAdvisor.putSession(session,userId);
+        WebScoketServerAdvisor.putSession(userId,session);
         
     }  
       

@@ -18,7 +18,7 @@ public class WebSocketController  extends DispatcherServlet {
 	private static final long serialVersionUID = 1L;
 
 	@RequestMapping(value = "/websocket.do")
-	public ModelAndView preengageList() {
+	public ModelAndView websocketLogin() {
 
 		
 		ModelAndView mav = new ModelAndView();

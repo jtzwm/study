@@ -17,7 +17,7 @@ public class WebScoketServerAdvisor {
 	
 	private static int onLineUsersCount =0;
 	
-	public static void putSession(Session session,String UserId){
+	public static void putSession(String userId,Session session){
 		//TODO 要改成使用Map
 		webScoketSessions.add(session);
 		onLineUsersCount++;

@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
 </head>
 <body>
 在线用户数：${userCount}
 <p>
-
+消息内容：<input type ="text" id="input_message"value="请输入要发送的消息"/><p><p>
 在线用户列表：<p>
 <#list resultList as usr>
 ${usr} <a href="#" onclick="sendMessage('${usr}')">给此用户发消息</a> <p>
@@ -16,8 +17,8 @@ ${usr} <a href="#" onclick="sendMessage('${usr}')">给此用户发消息</a> <p>
 <script type="text/javascript">
 function sendMessage(userID)
 {
-	
-window.location.href="sendMessage.do?userID="+userID;
+	var strMessage=$("#input_message").val();
+	window.location.href="sendMessage.do?userID="+userID+"&m="+strMessage;
 }
 </script>
 
