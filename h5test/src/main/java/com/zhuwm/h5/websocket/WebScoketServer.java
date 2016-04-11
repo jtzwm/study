@@ -18,8 +18,7 @@ import com.zhuwm.redis.OnLineUserImpl;
 public class WebScoketServer  {
 
 
-	private static Map<String,String> sessionUserMap=new HashMap<String,String>();
-	
+		
     private Session session;  
     private static final Logger Log = Logger.getLogger("WebSocketServer");  
       
@@ -30,7 +29,10 @@ public class WebScoketServer  {
         Log.info("*** WebSocket opened from sessionId " + session.getId()+",user:"+userId);
         
         OnLineUserImpl onlineUser= new OnLineUserImpl();
+        //将用户放入队列中（这种方法适用于视频队列等需要排队的）
         onlineUser.putUserToQueue(userId);
+        //保存sessionId所对应的userId，为了在后续事件中方便取到。如果是真正的项目，userId都在cookie或session中了。
+        onlineUser.putSessionId(session.getId(), userId);
         onlineUser.releaseJedis();
         
         WebScoketServerAdvisor.putSession(userId,session);
@@ -47,7 +49,11 @@ public class WebScoketServer  {
     @OnClose  
     public void end() {  
         Log.info("*** WebSocket closed from sessionId " + this.session.getId());  
-        WebScoketServerAdvisor.RemovesSession(sessionUserMap.get(this.session.getId()));
+        
+        OnLineUserImpl onlineUser= new OnLineUserImpl();
+        String userId=onlineUser.getUserId(this.session.getId());
+        
+        WebScoketServerAdvisor.RemovesSession(userId);
     }
 
 	

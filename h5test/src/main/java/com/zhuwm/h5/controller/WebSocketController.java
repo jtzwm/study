@@ -1,5 +1,8 @@
 package com.zhuwm.h5.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +19,22 @@ import com.zhuwm.h5.service.IndexService;
 public class WebSocketController  extends DispatcherServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	@RequestMapping(value = "/websocketlogin.do")
+	public ModelAndView websocketLogin(HttpServletRequest request, HttpServletResponse response) {
 
+		String userId=request.getParameter("userId");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("userId",userId);
+		mav.setViewName("websocket/index");
+		return mav;
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/websocket.do")
-	public ModelAndView websocketLogin() {
+	public ModelAndView websocketIndex() {
 
 		
 		ModelAndView mav = new ModelAndView();

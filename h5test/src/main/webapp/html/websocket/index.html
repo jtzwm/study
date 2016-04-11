@@ -4,13 +4,15 @@
 <head>    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
 <title>Index</title>    
+
+<script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
 <script type="text/javascript">    
 var ws = null;    
 function startWebSocket() {    
     if ('WebSocket' in window)    
-        ws = new WebSocket("ws://localhost:8080/h5test/websocket/zhu");    
+        ws = new WebSocket("ws://localhost:8080/h5test/websocket/${userId}");    
     else if ('MozWebSocket' in window)    
-        ws = new MozWebSocket("ws://localhost:8080/h5test/websocket/zhu");    
+        ws = new MozWebSocket("ws://localhost:8080/h5test/websocket/${userId}");    
     else    
         alert("not support");    
         
@@ -29,11 +31,26 @@ function startWebSocket() {
 }    
     
 function sendMsg() {    
+	startWebSocket();
     ws.send(document.getElementById('writeMsg').value);    
-}    
+}
+
+function login(){
+	var strMessage=$("#userId").val();
+	window.location.href="websocketlogin.do?userId="+strMessage;
+}
 </script>    
 </head>    
-<body onload="startWebSocket();">    
+<body >
+<#if (userId!"")=="">
+请输入用户名:<input type="text" id="userId"></input> 
+<input type="button" value="登录" onclick="login()"></input>    <p><p>
+<#else>
+当前用户:${userId}<p>
+</#if>
+
+
+
 <input type="text" id="writeMsg"></input>    
 <input type="button" value="send" onclick="sendMsg()"></input>    
 </body>    

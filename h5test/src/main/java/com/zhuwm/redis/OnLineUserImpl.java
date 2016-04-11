@@ -6,7 +6,7 @@ import com.zhuwm.redis.jedis.JedisUtil;
 
 import redis.clients.jedis.Jedis;
 /**
- * 在redis中保存在线视频用户列表的封装类。
+ * 在redis中保存在线用户列表的封装类。
  * 可获取在线用户数、向队列中增加用户、从队列中取出用户
  * 开发人员: @author zhuweiming<br>
  * 开发时间: 2016年4月8日<br>
@@ -14,9 +14,36 @@ import redis.clients.jedis.Jedis;
 public class  OnLineUserImpl {
 	
 	
+	/**
+	 * 在线用户列表的redis常量
+	 */
 	public static String B_S_ONLINEUSERQUENE_NAME="k_ol_u_name";
+	/**
+	 * 用于保存session id所对应的userId。
+	 */
+	public static String B_S_ONLINEUSERQUENE_SESSION_NAME=B_S_ONLINEUSERQUENE_NAME+":session_id:";
 	
 	private Jedis jedis =JedisUtil.getJedis();
+	
+	/**
+	 * 保存sessionId所对应的userId。key为sessionId,value为userId
+	 * 在websocket各事件中，通过sessionId，可以知道userId
+	 * @author zhuweiming
+	 * @param userId
+	 * @param sessionId
+	 */
+	public void putSessionId(String sessionId,String userId){
+		jedis.set(B_S_ONLINEUSERQUENE_SESSION_NAME+sessionId, userId);
+	}
+	
+	/**
+	 * 通过sessionId，获取userId
+	 * @author zhuweiming
+	 * @param sessionId
+	 */
+	public String getUserId(String sessionId){
+		return jedis.get(B_S_ONLINEUSERQUENE_SESSION_NAME+sessionId);
+	}
 	
 	/**
 	 * 向队列中加入用户。
