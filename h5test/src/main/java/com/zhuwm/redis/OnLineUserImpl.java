@@ -1,6 +1,8 @@
 package com.zhuwm.redis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.zhuwm.redis.jedis.JedisUtil;
 
@@ -11,8 +13,9 @@ import redis.clients.jedis.Jedis;
  * 开发人员: @author zhuweiming<br>
  * 开发时间: 2016年4月8日<br>
  */
-public class  OnLineUserImpl {
+public class  OnLineUserImpl implements IOnLineUserInterface{
 	
+	private static Map<String,IOnLineUserObserver> onLineUserObserverMap = new HashMap<String,IOnLineUserObserver>();
 	
 	/**
 	 * 在线用户列表的redis常量
@@ -53,6 +56,12 @@ public class  OnLineUserImpl {
 	public void putUserToQueue(String userId){
 		jedis.lrem(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, 0, userId);
 		jedis.lpush(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, userId);
+		
+		for (String key:onLineUserObserverMap.keySet()) {
+			
+			IOnLineUserObserver observer=(IOnLineUserObserver)onLineUserObserverMap.get(key);
+			observer.onLineNotice();
+		}
 	}
 	
 	/**
@@ -83,6 +92,16 @@ public class  OnLineUserImpl {
 	 */
 	public void releaseJedis(){
 		JedisUtil.returnResource(jedis);
+	}
+
+	/**
+	 * 加入监听器
+	 */
+	public void registerObserver(String key,IOnLineUserObserver observer) {		
+		System.out.println("OnLineUserImpl:注册监听器数量："+onLineUserObserverMap.size());
+		if(onLineUserObserverMap.get(key)!=null){
+			onLineUserObserverMap.put(key, observer);
+		}
 	}
 	
 
