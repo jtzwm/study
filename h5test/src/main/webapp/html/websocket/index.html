@@ -8,11 +8,12 @@
 <script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
 <script type="text/javascript">    
 var ws = null;    
-function startWebSocket() {    
+function startWebSocket(strUserId) {    
+	url="ws://localhost:8080/h5test/websocket/"+strUserId;
     if ('WebSocket' in window)    
-        ws = new WebSocket("ws://localhost:8080/h5test/websocket/${userId}");    
+        ws = new WebSocket(url);    
     else if ('MozWebSocket' in window)    
-        ws = new MozWebSocket("ws://localhost:8080/h5test/websocket/${userId}");    
+        ws = new MozWebSocket(url);    
     else    
         alert("not support");    
         
@@ -36,8 +37,24 @@ function sendMsg() {
 }
 
 function login(){
-	var strMessage=$("#userId").val();
-	window.location.href="websocketlogin.do?userId="+strMessage;
+	var strUserId=$("#userId").val();
+	
+	//TODO要改成ajax调用，login成功后，跳转到列表页面
+	//window.location.href="websocketlogin.do?userId="+strUserId;
+	
+    $.ajax({  
+        type : "GET",  //提交方式  
+        dataType:"json",  
+        url : "websocketlogin.do?userId="+strUserId,//路径  
+        data : {  
+            "userId" : strUserId 
+        },//数据，这里使用的是Json格式进行传输  
+        success : function(result) {//返回数据根据结果进行相应的处理  
+			alert(result);
+        }  
+    });  
+	
+	startWebSocket(strUserId);
 }
 </script>    
 </head>    
