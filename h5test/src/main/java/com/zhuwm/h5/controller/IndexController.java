@@ -20,7 +20,7 @@ public class IndexController  extends DispatcherServlet {
 	private IndexService indexService;
 
 
-	@RequestMapping(value = "/index.do")
+	@RequestMapping(value = "/f7index.do")
 	public ModelAndView preengageList() {
 		List CustomeList=indexService.queryCustomeList();
 		
@@ -28,6 +28,13 @@ public class IndexController  extends DispatcherServlet {
 		mav.addObject("resultList",CustomeList);
 		//mav.addObject("customerNo", "fuck freemarker");
 		mav.setViewName("f7test/index");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/index.do")
+	public ModelAndView showIndex() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index");
 		return mav;
 	}
 
