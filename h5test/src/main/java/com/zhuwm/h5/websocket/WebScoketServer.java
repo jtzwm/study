@@ -1,8 +1,5 @@
 package com.zhuwm.h5.websocket;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -12,10 +9,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
-import com.zhuwm.redis.IOnLineUserInterface;
-import com.zhuwm.redis.IOnLineUserObserver;
 import com.zhuwm.redis.OnLineUserImpl;
-import com.zhuwm.redis.WebOnLineUserObserver;
 
 @ServerEndpoint(value = "/websocket/{user}")  
 public class WebScoketServer  {
@@ -33,9 +27,7 @@ public class WebScoketServer  {
         
 
         OnLineUserImpl onlineUser= new OnLineUserImpl();
-        //TODO 注册监听器，要改成系统启动时自动注册，或者通过spring注册。
-        onlineUser.registerObserver(new WebOnLineUserObserver());
-  
+
         //将用户放入队列中（这种方法适用于视频队列等需要排队的）
         onlineUser.putUserToQueue(userId);
         //保存sessionId所对应的userId，为了在后续事件中方便取到。如果是真正的项目，userId都在cookie或session中了。
@@ -60,6 +52,7 @@ public class WebScoketServer  {
         
         OnLineUserImpl onlineUser= new OnLineUserImpl();
         String userId=onlineUser.getUserId(this.session.getId());
+        onlineUser.releaseJedis();
         
         WebScoketServerAdvisor.RemovesSession(userId);
     }

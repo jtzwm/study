@@ -30,6 +30,8 @@ public class OnlineUserController  extends DispatcherServlet {
 		
 		OnLineUserImpl impl = new OnLineUserImpl();
 		long userCount=impl.getQueueCount();
+		impl.releaseJedis();
+		
 		List<String> userList=impl.getQueueUserList();
 		
 		ModelAndView mav = new ModelAndView();

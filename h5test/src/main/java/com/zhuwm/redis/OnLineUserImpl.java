@@ -13,9 +13,13 @@ import redis.clients.jedis.Jedis;
  * 开发人员: @author zhuweiming<br>
  * 开发时间: 2016年4月8日<br>
  */
-public class  OnLineUserImpl implements IOnLineUserInterface{
+public class  OnLineUserImpl{
 	
 	private static Map<String,IOnLineUserObserver> onLineUserObserverMap = new HashMap<String,IOnLineUserObserver>();
+	//初始化创建一个监听器
+	static{
+		onLineUserObserverMap.put("WebOnLineUserObserver",new WebOnLineUserObserver());
+	}
 	
 	/**
 	 * 在线用户列表的redis常量
@@ -57,6 +61,7 @@ public class  OnLineUserImpl implements IOnLineUserInterface{
 		jedis.lrem(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, 0, userId);
 		jedis.lpush(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, userId);
 		
+		
 		for (String key:onLineUserObserverMap.keySet()) {
 			
 			IOnLineUserObserver observer=(IOnLineUserObserver)onLineUserObserverMap.get(key);
@@ -95,14 +100,16 @@ public class  OnLineUserImpl implements IOnLineUserInterface{
 	}
 
 	/**
-	 * 加入监听器
+	 * 加入其他监听器
 	 */
-	public void registerObserver(String key,IOnLineUserObserver observer) {		
+	public static void registerObserver(String key,IOnLineUserObserver observer) {		
 		System.out.println("OnLineUserImpl:注册监听器数量："+onLineUserObserverMap.size());
 		if(onLineUserObserverMap.get(key)!=null){
 			onLineUserObserverMap.put(key, observer);
 		}
 	}
+
+
 	
 
 }

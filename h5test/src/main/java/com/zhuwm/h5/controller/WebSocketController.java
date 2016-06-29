@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zhuwm.redis.OnLineUserImpl;
+
 
 /*
  * ======
@@ -62,6 +64,9 @@ public class WebSocketController  extends DispatcherServlet {
 			//创建新的cookie并保存。
 			Cookie cookie=new Cookie("userId", loginUserId);
 			response.addCookie(cookie);	
+			
+			//这里不用再往redis中放用户登录信息。在websocketserver方法中，h5用户登录时，才往redis中加用户登录、并且通知所有observer.
+			
 		}else{
 			loginUserId="";
 		}
