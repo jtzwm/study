@@ -8,15 +8,48 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <title>中融信托</title>
-  <link rel="stylesheet" href="/css/framework7.min.css">
-  <link rel="stylesheet" href="/css/framework7.themes.min.css">
-  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="css/framework7.min.css">
+  <link rel="stylesheet" href="css/framework7.themes.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link href="css/jquery.rte.css" rel="stylesheet">
+  <script src="js/libs/jquery-1.12.3.min.js"></script>
+	<script src="js/jquery.rte.js"></script>
+	<script src="js/jquery.rte.tb.js"></script>
+	
 </head>
-
+<style>
+	.rte-zone {
+    clear: none;
+    margin-left: 10px;
+}
+</style>
 <body>
 显示读取word的结果
+<br>
 
+
+					<div class="product-item">
+						<span class="name">内容</span>
+						<label>
+						<textarea  id="agreementContent" class="rte">测试</textarea>
+						<div id='errorAgrCont' class="wrongTips typeST" style="display:none;">
+							请输入内容
+							<em></em>
+						<i class="triangle"></i>
+						</div>
+						</label>
+					</div>
 
 </body>
-
+<script type="text/javascript">
+// 编辑器
+var _domain = "htht";
+	blogEditer = $("#agreementContent").rte({
+	 controls_rte: rte_toolbar,
+	 controls_html: html_toolbar,
+	 width: 700,
+	 height: 400
+	});
+	
+</script>
 </html>
