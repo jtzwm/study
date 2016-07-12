@@ -18,28 +18,42 @@ public class ReadWordService {
 		
 		try {
 			InputStream is =new FileInputStream("d:\\temp\\中融信托-集合资金信托信托合同范本.doc");
-			//WordExtractor extractor = new WordExtractor(is);  
+			//WordExtractor extractor = new WordExtractor(is);  	
 			HWPFDocument doc = new HWPFDocument(is); 
 			//System.out.println(doc.getText());
 			Range range = doc.getRange();  
 			int paraNum= range.numParagraphs();
+			int sectNum=range.numSections();
+			
 			System.out.println("==段落数"+paraNum);
-			for(int i=0;i<paraNum; i++){
+			System.out.println("==section数"+paraNum);
+			System.out.println("==字符数"+doc.getRange().getEndOffset());
+			String strTemp="";
+			Paragraph paragraph=null;
+/*			for(int i=0;i<paraNum; i++){
 				System.out.println("=====段落"+(i+1)+":"+range.getParagraph(i));
 				
-				Paragraph paragraph=range.getParagraph(i);
-				String strTemp=paragraph.text();
+				paragraph=range.getParagraph(i);
+				strTemp=paragraph.text();
 				
 				if(strTemp.indexOf("以下无正文")!=-1){
 					System.out.println("*********找到以下无正文，在第"+i+"段");
-					Range rangeNew=new Range(i,paraNum,doc);
+					
+					
+					Range rangeNew=new Range(range.getParagraph(i+1).getStartOffset(),range.getEndOffset(),doc);
 					rangeNew.delete();
-					doc.write(new FileOutputStream("D:\\temp\\test.doc"));
-					is.close();
+					
 					break;
 				};
-				//System.out.println(range.getParagraph(i).text());				
-			}			
+
+
+			}*/
+			
+			
+			System.out.println("*********重新输出 ");
+			System.out.println(doc.getRange().getEndOffset());
+			doc.write(new FileOutputStream("D:\\temp\\test.doc"));
+			is.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
