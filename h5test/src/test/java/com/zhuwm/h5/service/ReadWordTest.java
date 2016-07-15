@@ -18,8 +18,8 @@ public class ReadWordTest {
 	@Test
 	public void test() {
 		ReadWordService readword=new ReadWordService();
-		//readword.readReadWordFile();
-		readword.readWordXFile();
+		readword.readReadWordFile();
+		//readword.readWordXFile();
 		assertTrue(true);
 		//fail("Not yet implemented");
 	}
