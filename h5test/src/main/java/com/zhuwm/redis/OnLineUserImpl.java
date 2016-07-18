@@ -69,6 +69,10 @@ public class  OnLineUserImpl{
 		}
 	}
 	
+	public void removeFromeQueue(String userId){
+		jedis.lrem(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, 0, userId);
+	}
+	
 	/**
 	 * 获取队列中用户数。
 	 * @author zhuweiming

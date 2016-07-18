@@ -1,9 +1,11 @@
 package com.zhuwm.h5.service;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,14 +16,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.poi.hpsf.CustomProperties;
 import org.apache.poi.hpsf.DocumentSummaryInformation;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.HWPFDocumentCore;
@@ -34,13 +34,11 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-
-import com.itextpdf.tool.xml.css.parser.state.Properties;
 
 @Service
 public class ReadWordService {
 	
+	//处理docx
 	public void readWordXFile(){
 		InputStream is;
 		try {
@@ -84,8 +82,31 @@ public class ReadWordService {
 
 	}
 
+	//读取html到string，
+	public String loadHtmlFile(){
+        FileReader fr;
+        StringBuilder sb=new StringBuilder();
+		try {
+			fr = new FileReader("D:\\temp\\out.html");
+	        BufferedReader br=new BufferedReader(fr);
+	       
+	        while(br.readLine()!=null){
+	            sb.append(br.readLine());
+	            
+	        }
+	        br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		return sb.toString();
+	}
 	
+	//处理doc文件
 	public void readReadWordFile(){
 		
 		try {
@@ -95,7 +116,7 @@ public class ReadWordService {
 			HWPFDocument doc = new HWPFDocument(is); 
 			Range range = doc.getRange();  
 			
-/*			//删除文档多余的属性，避免生成html的meta属性
+			//删除文档多余的属性，避免生成html的meta属性
 			deleteProperties(doc);
 			
 			//删除所有bookmark
@@ -104,7 +125,7 @@ public class ReadWordService {
 			replaceVariable(range);
 			//找到并删除指宝文字后的段落
 			deleteRange(doc, range);
-*/
+
 			//生成html
 			generateHtml(doc);
 			
@@ -148,7 +169,8 @@ public class ReadWordService {
 
 	private void generateHtml(HWPFDocumentCore wordDocument) throws ParserConfigurationException, IOException, TransformerFactoryConfigurationError, TransformerException {
 		WordToHtmlConverter converter = new WordToHtmlConverter(
-				DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());  
+				DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());
+		
 		converter.processDocument(wordDocument); 
 		System.out.println("*********输出html"+converter.getDocument());
 		

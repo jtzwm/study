@@ -9,6 +9,8 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.zhuwm.redis.OnLineUserImpl;
 
 @ServerEndpoint(value = "/websocket/{user}")  
@@ -35,6 +37,10 @@ public class WebScoketServer  {
         onlineUser.releaseJedis();
         
         //TODO session可以保存在redis中。
+        Gson gson= new GsonBuilder().create();
+        String strSession=gson.toJson(session);
+        Log.debug(strSession);
+        
         WebScoketServerAdvisor.putSession(userId,session);
         
     }  
@@ -54,7 +60,7 @@ public class WebScoketServer  {
         String userId=onlineUser.getUserId(this.session.getId());
         onlineUser.releaseJedis();
         
-        WebScoketServerAdvisor.RemovesSession(userId);
+        WebScoketServerAdvisor.RemovesSession(userId,this.session);
     }
 
 	

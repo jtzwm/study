@@ -17,16 +17,20 @@ public class WebScoketServerAdvisor {
 	
 	private static int onLineUsersCount =0;
 	
+	public static int getSessionCount(){
+		return webScoketSessions.size();
+	}
+	
 	public static void putSession(String userId,Session session){
 		//TODO 要改成使用Map
 		webScoketSessions.add(session);
 		onLineUsersCount++;
 	}
 	
-	public static void RemovesSession(String userId){
+	public static void RemovesSession(String userId,Session session){
 		
 		//TODO掉线时要从Map中删除掉
-//		webScoketSessions.remove()
+		webScoketSessions.remove(session);
 		onLineUsersCount--;
 		
 	}
@@ -36,7 +40,7 @@ public class WebScoketServerAdvisor {
 	public static void sendMessageToAll(String message){
 		for (Session session : webScoketSessions) {
 			try {
-				session.getBasicRemote().sendText(message);
+				session.getBasicRemote().sendText("当前等待用户数:"+webScoketSessions.size());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

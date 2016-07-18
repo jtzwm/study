@@ -23,7 +23,10 @@ public class ReadWordController  extends DispatcherServlet {
 	public ModelAndView preengageList() {
 		
 		ReadWordService readWordService =new ReadWordService();
+		String strContract=readWordService.loadHtmlFile();
+		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("contract_text",strContract);
 		//mav.addObject("resultList",CustomeList);
 		//mav.addObject("customerNo", "fuck freemarker");
 		mav.setViewName("/readword");
