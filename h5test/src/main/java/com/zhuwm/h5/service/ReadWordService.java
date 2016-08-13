@@ -1,14 +1,16 @@
 package com.zhuwm.h5.service;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.util.List;
 
@@ -33,6 +35,10 @@ import org.apache.poi.hwpf.usermodel.Range;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Entities;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,9 +46,11 @@ public class ReadWordService {
 	
 	//处理docx
 	public void readWordXFile(){
+		String fileName="d:\\temp\\中融信托-集合资金信托信托合同范本1.docx";
+
 		InputStream is;
 		try {
-			is = new FileInputStream("d:\\temp\\中融信托-集合资金信托信托合同范本1.docx");
+			is = new FileInputStream(fileName);
 			XWPFDocument doc = new XWPFDocument(is);
 			List<XWPFParagraph> list=doc.getParagraphs();
 			System.out.println("ListSize:"+list.size());
@@ -126,16 +134,14 @@ public class ReadWordService {
 			//找到并删除指宝文字后的段落
 			deleteRange(doc, range);
 
-			//生成html
+			//生成html，并处理html
 			generateHtml(doc);
-			
+						
 			//将html转成pdf
-			new ConvertHtml2PDF().convert("D:\\temp\\out.html");
+			new ConvertHtml2PDF().convert("D:\\temp\\out_new.html");
 
 			System.out.println("*********重新输出 "+doc.getRange().numParagraphs());
-			//System.out.println(range.getParagraph(27).text());
-			//System.out.println(doc.getRange().text());
-			doc.write(new FileOutputStream("D:\\temp\\out.doc"));
+			//doc.write(new FileOutputStream("D:\\temp\\out.doc"));
 			is.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -174,17 +180,60 @@ public class ReadWordService {
 		converter.processDocument(wordDocument); 
 		System.out.println("*********输出html"+converter.getDocument());
 		
-		Writer writer = new FileWriter(new File("D:\\temp\\out.html"));  
+		//Writer writer = new FileWriter(new File("D:\\temp\\out.html"));  
+		Writer strWriter = new StringWriter();
+		
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();  
-		transformer.setOutputProperty( OutputKeys.ENCODING, "utf-8" );  
+		transformer.setOutputProperty( OutputKeys.ENCODING, "UTF-8" );  
 		//是否添加空格  
 		transformer.setOutputProperty( OutputKeys.INDENT, "yes" );  
 		transformer.setOutputProperty( OutputKeys.METHOD, "html" );  
+		transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );  
 		
 		transformer.transform(  
 		                new DOMSource(converter.getDocument() ),  
-		                new StreamResult( writer ) );  
-		writer.close();
+		                new StreamResult( strWriter ) );  
+		//writer.close();
+		
+		
+/*		//处理一遍html，做标签。这块要优化
+		 File file = new File("D:\\temp\\out.html");
+	        BufferedReader reader =  new BufferedReader(new FileReader(file));
+	        StringBuilder sBuilder= new StringBuilder();
+	        String tempString=null;
+	        while ((tempString = reader.readLine()) != null) {
+                // 显示行号
+                sBuilder.append(tempString);
+            }*/
+	        org.jsoup.nodes.Document doc = Jsoup.parse(strWriter.toString());  
+	        doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
+	        doc.outputSettings().prettyPrint(true);
+	        doc.outputSettings().syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml);
+	       //Element content = doc.getElementById("meta");
+	       
+	         	       Elements metas = doc.select("table[class$=t1]");
+	       for (Element meta : metas) {
+	    	   meta.remove();
+	    	 }
+	       /*	       
+Elements metas1 = doc.select("meta[http-equiv$=Content-Type]");
+	       for (Element meta : metas1) {
+	    	   //Element newElemnet= meta.clone();
+	    	   meta.remove();
+	    	 }
+	       
+	       Elements meta2 = doc.select("head");
+	       for (Element meta : meta2) {
+	    	   meta2.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></meta> ");
+	    	 }
+	        //reader.close();
+*/	        
+            File file1 = new File("D:\\temp\\out_new.html");  
+            FileOutputStream  fos = new FileOutputStream(file1);  
+            BufferedWriter  bw = new BufferedWriter(new OutputStreamWriter(fos,"UTF-8"));  
+            bw.write(doc.html());  
+            bw.close();
+            fos.close();
 		
 	}
 

@@ -1,0 +1,13 @@
+
+#Container{
+    width:1000px;
+    margin:0 auto;/*设置整个容器在浏览器中水平居中*/
+    //background:#CF3;
+}
+#fun_list{
+	margin:0 auto;
+}
+
+.fun_list table{border:solid #add9c0; border-width:0px 1px 1px 0px;}
+.fun_list td{border:solid #add9c0; border-width:1px 0px 0px 1px;}
+.fun_list th{border:solid #add9c0; border-width:1px 0px 0px 1px;}
