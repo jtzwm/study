@@ -10,7 +10,7 @@ import org.junit.Test;
 public class ConvertHtml2PDFTest {
 	
 	private String htmlFileName="D:\\temp\\out_new.html";
-	private String docFileName="D:\\temp\\中融信托-集合资金信托信托合同范本1.doc";
+	private String docFileName="D:\\temp\\中融信托-集合资金信托信托合同范本.doc";
 	private String pdfFileName="D:\\temp\\out2.pdf";
 
 	@Before
