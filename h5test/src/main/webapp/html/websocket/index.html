@@ -1,74 +1,116 @@
 
-<!DOCTYPE html>    
-<html>    
-<head>    
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
-<title>Index</title>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Index</title>
 
 <script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
-<script type="text/javascript">    
-var ws = null;    
-function startWebSocket(strUserId) {    
-	url="ws://localhost:8080/h5test/websocket/"+strUserId;
-    if ('WebSocket' in window)    
-        ws = new WebSocket(url);    
-    else if ('MozWebSocket' in window)    
-        ws = new MozWebSocket(url);    
-    else    
-        alert("not support");    
-        
-        
-    ws.onmessage = function(evt) {    
-        alert(evt.data);    
-    };    
-        
-    ws.onclose = function(evt) {    
-        alert("close");    
-    };    
-        
-    ws.onopen = function(evt) {    
-        alert("open");    
-    };    
-}    
-    
-function sendMsg() {    
-	startWebSocket();
-    ws.send(document.getElementById('writeMsg').value);    
-}
+<script type="text/javascript">
+	var ws = null;
+	function startWebSocket(strUserId) {
+		url = "ws://localhost:8080/h5test/websocket/" + strUserId;
+		if ('WebSocket' in window)
+			ws = new WebSocket(url);
+		else if ('MozWebSocket' in window)
+			ws = new MozWebSocket(url);
+		else
+			alert("not support");
 
-function login(){
-	var strUserId=$("#userId").val();
+		ws.onmessage = function(evt) {
+			alert(evt.data);
+		};
+
+		ws.onclose = function(evt) {
+			alert("close");
+		};
+
+		ws.onopen = function(evt) {
+			alert("open");
+		};
+	}
+
+	function sendMsg() {
+		startWebSocket();
+		ws.send(document.getElementById('writeMsg').value);
+	}
+
+	function login() {
+		var strUserId = $("#userId").val();
+
+		//TODO要改成ajax调用，login成功后，跳转到列表页面
+		//window.location.href="websocketlogin.do?userId="+strUserId;
+
+		$.ajax({
+			type : "GET", //提交方式  
+			dataType : "json",
+			url : "websocketlogin.do?userId=" + strUserId,//路径  
+			data : {
+				"userId" : strUserId
+			},//数据，这里使用的是Json格式进行传输  
+			success : function(result) {//返回数据根据结果进行相应的处理  
+				alert("ajax返回结果:"+result);
+				$("#loginDIV").hide();
+				window.location.reload();
+				
+			}
+		});
+
+		startWebSocket(strUserId);
+	}
 	
-	//TODO要改成ajax调用，login成功后，跳转到列表页面
-	//window.location.href="websocketlogin.do?userId="+strUserId;
+	function connect() {
+		var strUserId = $("#loginUserId").val();
+
+		$.ajax({
+			type : "GET", //提交方式  
+			dataType : "json",
+			url : "userConnect.do?userId=" + strUserId,//路径  
+			data : {
+				"userId" : strUserId
+			},//数据，这里使用的是Json格式进行传输  
+			success : function(result) {//返回数据根据结果进行相应的处理  
+				
+				
+			}
+		});
+
+		startWebSocket(strUserId);
+	}	
 	
-    $.ajax({  
-        type : "GET",  //提交方式  
-        dataType:"json",  
-        url : "websocketlogin.do?userId="+strUserId,//路径  
-        data : {  
-            "userId" : strUserId 
-        },//数据，这里使用的是Json格式进行传输  
-        success : function(result) {//返回数据根据结果进行相应的处理  
-			alert(result);
-        }  
-    });  
+
+	function relogin() {
+		
+	    var d = new Date();
+	    d.setTime(d.getTime() + (-1*24*60*60*1000));
+	    var expires = "expires="+d.toUTCString();
+	    document.cookie = "userId='';" + expires;
+		
+		window.location.reload();
+	}
+</script>
+</head>
+<body>
 	
-	startWebSocket(strUserId);
-}
-</script>    
-</head>    
-<body >
-<#if (userId!"")=="">
-请输入用户名:<input type="text" id="userId"></input> 
-<input type="button" value="登录" onclick="login()"></input>    <p><p>
-<#else>
-当前用户:${userId}<p>
-</#if>
+	<#if (userId!"")=="">
+	<div id="loginDIV">
+		请输入用户名:<input type="text" id="userId"></input> <input type="button"
+			value="登录" onclick="login()"></input>
+		<p>
+		<p>
+	</div>
+	<#else>
+	<div id="loginedDIV">
+	<input type="hidden" id="loginUserId">${userId}</input>
+		用户ID:${userId}<p>
+		排队人数：${queueCount}
+		<p>
+			<input type="button" value="退出" onclick="relogin()">
+			
+			模拟用户<a href="#" onclick="connect()">接通</a>，接通用，自动从队列中删除当前用户，并且实现向其他用户通过websocket发送新的队列数。
+	</div>
+	</#if>
+	
 
-
-
-<input type="text" id="writeMsg"></input>    
-<input type="button" value="send" onclick="sendMsg()"></input>    
-</body>    
-</html>  
+</body>
+</html>

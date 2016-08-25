@@ -37,9 +37,9 @@ public class WebScoketServer  {
         onlineUser.releaseJedis();
         
         //TODO session可以保存在redis中。
-        Gson gson= new GsonBuilder().create();
+/*        Gson gson= new GsonBuilder().create();
         String strSession=gson.toJson(session);
-        Log.debug(strSession);
+        Log.debug(strSession);*/
         
         WebScoketServerAdvisor.putSession(userId,session);
         

@@ -29,10 +29,9 @@ public class OnlineUserController  extends DispatcherServlet {
 	public ModelAndView getOnLineUserList() {
 		
 		OnLineUserImpl impl = new OnLineUserImpl();
-		long userCount=impl.getQueueCount();
-		impl.releaseJedis();
-		
+		long userCount=impl.getQueueCount();		
 		List<String> userList=impl.getQueueUserList();
+		impl.releaseJedis();
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("userCount",userCount);
@@ -51,6 +50,18 @@ public class OnlineUserController  extends DispatcherServlet {
 		mav.setViewName("websocket/result");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/deleteUser.do")
+	public String deleteUser(HttpServletRequest request, HttpServletResponse response) {
+		String userId=request.getParameter("userID");
+		OnLineUserImpl impl = new OnLineUserImpl();
+		impl.removeFromeQueue(userId);
+		//long userCount=impl.getQueueCount();		
+		//List<String> userList=impl.getQueueUserList();
+		impl.releaseJedis();
+		
+		return "redirect:/onLineUser.do";
+	}	
 
 	
 }

@@ -45,6 +45,14 @@ public class IndexController  extends DispatcherServlet {
 		List CustomeList=indexService.queryCustomeList();
 		return CustomeList;
 	}
+	
+	
+	@RequestMapping(value = "/butelTest.do")
+	public ModelAndView butelTest() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("butel");
+		return mav;
+	}
 
 	
 }

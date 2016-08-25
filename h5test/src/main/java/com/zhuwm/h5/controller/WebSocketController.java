@@ -15,6 +15,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zhuwm.redis.OnLineUserImpl;
+import com.zhuwm.util.CookieUtil;
 
 
 /*
@@ -72,6 +73,7 @@ public class WebSocketController  extends DispatcherServlet {
 		}
 
 		resultList.add(loginUserId);
+		//resultList.add
 		return resultList;
 	}
 	
@@ -79,9 +81,19 @@ public class WebSocketController  extends DispatcherServlet {
 	
 	
 	@RequestMapping(value = "/websocketindex.do")
-	public ModelAndView websocketIndex() {
+	public ModelAndView websocketIndex(HttpServletRequest request, HttpServletResponse response) {
+		//先看cookie中有没有登录信息
+		String userId=CookieUtil.getCookiesFromRequest(request);
+		
+		//再查当前在线用户数
+
+        OnLineUserImpl onlineUser= new OnLineUserImpl();
+        Long queueCount=onlineUser.getQueueCount();
+        onlineUser.releaseJedis();
 				
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("userId",userId);
+		mav.addObject("queueCount",queueCount);
 		mav.setViewName("websocket/index");
 		return mav;
 	}

@@ -62,6 +62,7 @@ public class  OnLineUserImpl{
 		jedis.lpush(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, userId);
 		
 		
+		
 		for (String key:onLineUserObserverMap.keySet()) {
 			
 			IOnLineUserObserver observer=(IOnLineUserObserver)onLineUserObserverMap.get(key);
@@ -82,6 +83,11 @@ public class  OnLineUserImpl{
 		return jedis.llen(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME);
 	}
 	
+	/**
+	 * 获取队列中所有用户ID
+	 * @author littl
+	 * @return
+	 */
 	public List<String> getQueueUserList(){
 		return jedis.lrange(OnLineUserImpl.B_S_ONLINEUSERQUENE_NAME, 0, -1);
 	}

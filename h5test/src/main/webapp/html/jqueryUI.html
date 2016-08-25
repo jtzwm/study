@@ -7,20 +7,98 @@
 <link rel="stylesheet" href="/h5test/css/custom.css">
 <script src="/h5test/js/libs/jquery-1.12.3.min.js"></script>
 <script src="/h5test/js/libs/jquery-ui.min.js"></script>
-<style type="text/css">body{height:100%;  margin:0px; padding:0px;}</style>
+\
+
+<script>
+	$(function() {
+		$("#tabs").tabs();
+		$("#menu").menu();
+		
+	});
+</script>
+
+<style type="text/css">
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.ui-menu {
+	width: 150px;
+}
+</style>
 </head>
 <body>
 
-	<div class="top" style='border: 1px solid #000; height:30px; background-color: #EEE'>这里是Top</div>
+	<div class="top"
+		style='border: 1px solid #000; height: 30px; background-color: #EEE'>这里是Top</div>
 
 	<div class="container"
 		style='border: 0px solid #000; background-color: #ffe; text-align: center; padding: 0px 0px;'>
 		<div class="left"
-			style='float: left; width: 20%; border: 1px solid #000; height: 600px'>左边</div>
+			style='float: left; width: 20%; border: 1px solid #000; height: 500px'>
+			<ul id="menu">
+				<li>
+					<div>
+						<span class="ui-icon ui-icon-disk"></span>Save
+					</div>
+				</li>
+				<li>
+					<div>
+						<span class="ui-icon ui-icon-zoomin"></span>Zoom In
+					</div>
+				</li>
+				<li>
+					<div>
+						<span class="ui-icon ui-icon-zoomout"></span>Zoom Out
+					</div>
+				</li>
+				<li class="ui-state-disabled">
+					<div>
+						<span class="ui-icon ui-icon-print"></span>Print...
+					</div>
+				</li>
+				<li>
+					<div>Playback</div>
+					<ul>
+						<li>
+							<div>
+								<span class="ui-icon ui-icon-seek-start"></span>Prev
+							</div>
+						</li>
+						<li>
+							<div>
+								<span class="ui-icon ui-icon-stop"></span>Stop
+							</div>
+						</li>
+						<li>
+							<div>
+								<span class="ui-icon ui-icon-play"></span>Play
+							</div>
+						</li>
+						<li>
+							<div>
+								<span class="ui-icon ui-icon-seek-end"></span>Next
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div>Learn more about this menu</div>
+				</li>
+			</ul>
+
+		</div>
 		<div class="right"
-			style='width: 100%; border: 1px solid #000; height: 600px;'>右边</div>
+			style='width: 100%; border: 1px solid #000; height: 500px;'>
+
+			
+
+		</div>
 	</div>
-	
-	<div class="bottom" style='border: 1px solid #000; background-color: #EEE'>这里是bottom</div>
+
+	<div class="bottom"
+		style='border: 1px solid #000; background-color: #EEE'>这里是bottom</div>
 </body>
 </html>

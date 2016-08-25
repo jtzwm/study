@@ -11,7 +11,7 @@
 消息内容：<input type ="text" id="input_message"value="请输入要发送的消息"/><p><p>
 在线用户列表：<p>
 <#list resultList as usr>
-${usr} <a href="#" onclick="sendMessage('${usr}')">给此用户发消息</a> <p>
+${usr} <a href="#" onclick="sendMessage('${usr}')">给此用户发消息</a>　　<a href="#" onclick="deleteUser('${usr}')">删除</a><p>
 </#list>
 </body>
 <script type="text/javascript">
@@ -19,6 +19,12 @@ function sendMessage(userID)
 {
 	var strMessage=$("#input_message").val();
 	window.location.href="sendMessage.do?userID="+userID+"&m="+strMessage;
+}
+
+function deleteUser(userID)
+{
+	//var strMessage=$("#input_message").val();
+	window.location.href="deleteUser.do?userID="+userID;
 }
 </script>
 
