@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script language="javascript" type="text/javascript" src="js/ServiceUI.js"></script>
+<script language="javascript" src="js/ButelService.js" type="text/javascript"></script>
+<script language="javascript" type="text/jscript" src="js/butelChat.js"></script>
+<script language="javascript" type="text/jscript" src="js/dc.js"></script>
+<script language="javascript" src="js/ButelNetPlugin.js"></script>
+<link rel="stylesheet" href="css/ServiceStyle.css"/>
+</head>
+<body onLoad="pageInitializeSetting()">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+    <td height="50" bgcolor="#000">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="headTable">
+		<tr>
+          <td width="150">视频坐席</td>
+          <td width="150">号码：<span id="nubeNumber">12345678</span></td>
+          <td width="150">昵称：<span id="userName">小明</span></td>
+          <td width="150">
+          	<div id="isBusyButton" style="background-image:url(img/busy.png);background-repeat:no-repeat;width:94px;height:24px;text-align:right;">
+            	<input type="image" src="img/blankButton.png" onClick="onBusyButton(this)" onFocus="this.blur()" />
+            </div>
+          </td>
+          <td width="150"><span onClick="getButelServiceQueueCount()">排队人数：<span id="waitingCount">0</span>人</span></td>
+          <td>&nbsp;</td>
+          <td width="35"><input type="image" src="img/u204.png" onClick="showAdaptiveDiv()"/></td>
+          <td width="35"><input type="image" src="img/u200.png" onClick="showConstParamDiv()"/></td>
+          <td width="35"><input type="image" src="img/u208.png" onClick="showPhotoDiv()"/></td>
+          <td width="35"><input type="image" src="img/u212.png" onClick="showQualityStatistics()"/></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top">    
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+          <td width="200">
+          	<textarea name="textarea" id="textarea" style="width:200px;height:500px" readonly></textarea><br/>
+            <input type="button" name="button3" id="button3" value="看SWF日志" onClick="showButelLog()">
+            <input type="button" name="button4" id="button4" value="清除日志" onClick="clearButelLog()"><br/>
+            <input type="button" id="getConnectAndCallStateBtn" value="获取坐席连接及呼叫状态" onClick="butelNetPhoneGetStatus()"/><br/>
+            <input type="button" id="getOfflineMessageBtn" value="获取离线消息" onClick="butelNetPhoneServiceIMCheckMsg()" />
+            <input type="button" id="UpLoadLogBtn" value="上传日志" onClick="butelNetPhoneServiceUpLoadLog()" /><br/>
+            <input type="button" id="getRelevanceUserInformationBtn" value="获取关联用户信息"  onClick="butelNetPhoneServiceGetUserList()"/>
+            <input type="button" id="logoutBtn" value="登出" onClick="butelNetPhoneLogout()" />
+          </td>
+          <td valign="top">
+          
+              <div id="mainContainer">
+                  <div id="outputDiv"><div id="outputInner"></div></div>
+                  <div id="middleDiv">
+                    <table width="450" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="5" height="40" align="center" valign="bottom"></td>
+                        <td width="35" valign="bottom"><input type="image" src="img/face.png" width="34" height="32" onClick="showExpression(this)" onFocus="this.blur()"/></td>
+                        <td width="35" valign="bottom"><input type="image" src="img/hangup.png" width="34" height="32" onClick="butelNetPhoneCallHangup()" onFocus="this.blur()"/></td>
+                        <td width="35" valign="bottom"><input type="image" src="img/changeCam.png" width="34" height="32" onClick="butelNetPhoneChangeCamera()" onFocus="this.blur()"/></td>
+                        <td width="35" valign="bottom"><input type="image" src="img/camera.png" width="34" height="32" onClick="butelNetPhoneCamera( caremaClosed );caremaClosed=!caremaClosed" onFocus="this.blur()"/></td>
+                        <td width="35" valign="middle"><div id="fileChooseDiv"></div></td>
+                        <td valign="bottom">&nbsp;</td>
+                        <td align="right" valign="middle">目标
+                        <input name="textfield" type="text" id="targetNumberText" style="width:60px" value="12345678">
+                        <input type="button" name="makeCallButton" id="makeCallButton" value="呼叫" onClick="butelNetPhoneMakeCall( targetNumberText.value );"></td>
+                        <td>
+                        <input type="button" name="redirectCallButton" id="redirectCallButton" value="呼转" onClick="butelNetPhoneServiceRedirectCall( targetNumberText.value, 2 );"></td>
+                        <td width="20" valign="middle"><input style="display:none" id="iconPageDown" type="image" src="img/pagedown.jpg" width="20" height="20" onClick="expressionPageDown()"/></td>
+                        <td width="20" valign="middle"><input style="display:none" id="iconPageUp" type="image" src="img/pageup.jpg" width="20" height="20" onClick="expressionPageUp()"/></td>
+                      </tr>
+                    </table>
+                </div>
+                  <div id="inputDiv">此处显示  id "inputDiv" 的内容</div>
+                  <div id="buttonDiv">
+                  <table width="450" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td height="40" valign="middle"></td>
+                      <td width="280" valign="middle" style="font-family:'微软雅黑','宋体',Arial;font-size:14px">按Ctrl＋Enter发IM,按Alt＋Enter发在线</td>
+                      <td width="105" valign="middle">
+                        <input type="image" name="imageField" id="imageField" src="img/send.png" onClick="sendText()"></td>
+                    </tr>
+                  </table>
+                </div>
+                  <div id="butelPhoneDiv"><div id="butelPhoneContainerDiv"></div></div>
+                  <div id="expressionDiv">此处显示  id "expressionDiv" 的内容</div>
+                </div>
+                
+          </td>
+          <td width="220" valign="top"><span id="agentOccupySpan"></span></td>
+        </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<div id="setConstParamDiv"><table width="600" border="0" cellspacing="0" cellpadding="0" class="headTable" bgcolor="#FFF">
+<tr>
+    <td bgcolor="#888">账号信息</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center"><table width="400" border="0" cellspacing="0" cellpadding="0" class="normalTable">
+		  <tr><td>昵称</td><td><input type="text" name="textfield1" id="textfield1"></td></tr>
+          <tr><td>号码</td><td><input type="text" name="textfield2" id="textfield2"></td></tr>
+          <tr><td>设备号</td><td><input type="text" name="textfield3" id="textfield3"></td></tr>
+          <tr><td>appkey</td><td><input type="text" name="textfield4" id="textfield4"></td></tr>
+          <tr><td>网关</td><td><input type="text" name="textfield5" id="textfield5"></td></tr>
+          <tr><td>坐席类型</td><td>
+            	<input type="radio" name="radio" id="radio1" value="1">一对多要关联<br/>
+              	<input type="radio" name="radio" id="radio2" value="2">一对一要关联<br/>
+            	<input type="radio" name="radio" id="radio3" value="3">一对一不关联<br/>
+            </td></tr>
+          <tr><td>最大用户数</td><td><input type="text" name="textfield6" id="textfield6"></td></tr>
+          <tr><td>是否使用代理</td><td><input type="checkbox" name="checkbox" id="checkbox">使用 </td></tr>
+          <tr><td>从属的接入号(可不填)</td><td><input type="text" name="textfield7" id="textfield7"></td></tr>
+          <tr>
+            <td><input type="button" name="button" id="button" value="保存设置" onClick="saveConstParam()"></td>
+            <td><input type="button" name="button2" id="button2" value="放弃修改" onClick="hideConstParamDiv()"></td>
+          </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+</table>
+</div>
+
+<div id="outCallDiv"><span id="newCallSpan"></span>
+<table width="140" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+      <td width="70px"><input type="image" id="answerBtn" src="img/RejectCall.png" onClick="serviceUserTakeCall(false);" onFocus="this.blur()"/></td>
+      <td><input type="image" id="callBarringBtn" src="img/AnswerCall.png" onClick="serviceUserTakeCall(true);" onFocus="this.blur()" /></td>
+    </tr>
+</table>
+</div>
+
+<div id="takePictureDiv"><table width="140" border="0" cellspacing="0" cellpadding="0">
+<tr><td colspan="2"><img id="photoImage" scr="" width="280" height="160"/></td></tr>
+ <tr>
+   <td><input type="image" src="img/takePhotoLocal.png" onClick="butelNetPhoneServiceTakePicture(true)" onFocus="this.blur()" /></td>
+   <td><input type="image" src="img/takePhotoRemote.png" onClick="butelNetPhoneServiceTakePicture(false)" onFocus="this.blur()" /></td>
+    </tr>
+</table>
+</div>
+
+<div id="qualityDiv">
+  <table width="400" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFF">
+      <tr><td colspan="3" style="text-align:center;color:#F8F5F5" bgcolor="#6E6363">通话实时质量：</td></tr>
+      <tr><td width="40px"></td><td width="250">本端上行编码档位:</td><td><span id="up_videosize"></span></td></tr>
+      <tr><td width="40px"></td><td>本端上行实际速率(带宽KB/s):</td><td><span id="up_rate"></span></td></tr>
+      <tr><td width="40px"></td><td>本端下行编码档位:</td><td><span id="down_videosize"></span></td></tr>
+      <tr><td width="40px"></td><td>本端下行实际速率(带宽KB/s):</td><td><span id="down_rate"></span></td></tr>
+      <tr><td width="40px"></td><td>上行端到端的丢包率(%):</td><td><span id="upP2pLoss"></span></td></tr>
+      <tr><td width="40px"></td><td>上行端到端的延迟(ms):</td><td><span id="upP2pDelay"></span></td></tr>
+      <tr><td width="40px"></td><td>下行端到端的丢包率(%):</td><td><span id="downP2pLoss"></span></td></tr>
+      <tr><td width="40px"></td><td>下行端到端的延迟(ms):</td><td><span id="downP2pDelay"></span></td></tr>
+  </table>
+</div>
+
+<body><div id="adaptiveDiv">
+  <table width="400" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFF">
+      <tr><td colspan="3" style="text-align:center;vertical-align:middle;color:#F8F5F5" bgcolor="#6E6363">自适应参数设置：</td></tr>
+      <tr><td width="40px"></td><td></td><td></td></tr>
+      <tr><td width="40px"></td><td width="180">本端上行编码档位:</td><td>
+      	<input type="radio" name="encVideoCapradio" id="encVideoCapradio1" value="radio">QVGA<br/>
+		<input type="radio" name="encVideoCapradio" id="encVideoCapradio2" value="radio">VGA<br/>
+		<input type="radio" name="encVideoCapradio" id="encVideoCapradio3" value="radio">HD</td></tr>
+      <tr><td width="40px"></td><td>本端上行带宽(KB/s):</td><td><input type="text" name="textfield8" id="textfield8" maxlength="4"></td></tr>
+      <tr><td width="40px"></td><td>本端下行编码档位:</td><td>
+      	<input type="radio" name="decVideoCapradio" id="decVideoCapradio1" value="radio">QVGA<br/>
+		<input type="radio" name="decVideoCapradio" id="decVideoCapradio2" value="radio">VGA<br/>
+		<input type="radio" name="decVideoCapradio" id="decVideoCapradio3" value="radio">HD</td></tr>
+      <tr><td width="40px"></td><td>本端下行带宽(KB/s):</td><td><input type="text" name="textfield9" id="textfield9" maxlength="4"></td></tr>
+      <tr><td width="40px"></td><td>是否开启自适应:</td><td><input type="checkbox" id="adaptiveCheckbox">开启</td></tr>
+      <tr><td width="40px"></td>
+      	<td><input type="button" id="buttonSaveAdaptive" value="保存设置" onClick="saveAdaptiveParam()"></td>
+        <td><input type="button" id="buttonCancelAdaptive" value="放弃修改" onClick="hideAdaptiveDiv()"></td></tr>
+  </table>
+</div>
+
+</body>
+</html>

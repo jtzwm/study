@@ -1,0 +1,77 @@
+@charset "utf-8";
+body{margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;}
+.headTable{text-align:center;color:#F8F5F5;font-family:"微软雅黑","宋体",Arial;font-weight:bold}
+.normalTable{text-align:center;color:#000;font-family:"微软雅黑","宋体",Arial}
+table.normalTable td{vertical-align:top;height:40px;text-align:left}
+#setConstParamDiv{border:1px solid #666;position:fixed;top:50%;left:50%;margin-left:-300px;margin-top:-200px;width:600px}
+#swfVideoDiv{position:fixed;top:50%;left:50%;margin-left:-160px;margin-top:-86px;width:320px;height:172px}
+#outCallDiv{position:fixed;top:0%;left:0%;width:100%;height:100%;background-image:url(../img/alphaBackground.png);background-repeat:repeat;color:#F8F5F5;font-weight:bold;font-size:24px}
+#takePictureDiv{position:fixed;top:100%;left:100%;margin-left:-280px;margin-top:-280px;background-color:#F1EAEA}
+#qualityDiv{border:1px solid #666;position:fixed;top:50px;left:100%;margin-left:-402px;width:400px;font-family:"微软雅黑","宋体",Arial}
+#qualityDiv td{vertical-align:center;height:40px;text-align:left}
+#adaptiveDiv{border:1px solid #666;position:fixed;top:50%;left:50%;margin-left:-200px;margin-top:-150px;width:400px;font-family:"微软雅黑","宋体",Arial}
+#adaptiveDiv  td{vertical-align:top;height:40px;text-align:left}
+#adaptiveDiv  td [type=text]{width:60px}
+
+#mainContainer{position:absolute;width:720px;height:460px;background-image:url(../img/1.jpg)}
+#outputDiv{
+	position:relative;
+	overflow:auto;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	width:450px;
+	height:275px;
+	background-color:#FAFAFA;
+	left:10px;
+	top:50px
+}
+#middleDiv{
+	position:relative;
+	width:450px;
+	height:40px;
+	background-image:url(../img/middle.jpg);
+	left:10px;
+	top:50px
+}
+#inputDiv{
+	position:relative;
+	width:450px;
+	height:45px;
+	background-color:#CCC;
+	left:10px;
+	top:50px
+}
+#buttonDiv{
+	position:relative;
+	width:450px;
+	height:40px;
+	background-color:#DDD;
+	left:10px;
+	top:50px
+}
+#butelPhoneDiv{
+	position:relative;
+	overflow:hidden;
+	width:240px;
+	height:276px;
+	background-image:url(../service.png);
+	left:470px;
+	top:-350px
+}
+#expressionDiv{
+	position:absolute;
+	width:240px;
+	height:100px;
+	background-color:#EEE;
+	left:20px;
+	top:226px
+}
+
+.leftTop{background-image:url(../img/leftTop.png)}
+.rightIcon{background-image:url(../img/rightIcon.png);background-repeat:repeat-y}
+.topIcon{background-image:url(../img/topIcon.png);background-repeat:repeat-x}
+.rightTop{background-image:url(../img/rightTop.png)}
+.rightBottom{background-image:url(../img/rightBottom.png)}
+.bottomIcon{background-image:url(../img/bottomIcon.png);background-repeat:repeat-x}
+.leftBottom{background-image:url(../img/leftBottom.png)}
+.leftIcon{background-repeat:repeat-y}

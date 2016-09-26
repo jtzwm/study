@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>模拟客户端</title>
+<!-- <script language="javascript"
+	src="http://www.butel.com/download/flash2.1/ButelNetCall.js"
+	type="text/javascript"></script> -->
+
+
+
+</head>
+
+<body onload="init()">
+	<div id="mypage">
+		<button id="btnInit" onclick="connVideo()">连接</button>
+		</p>
+		<button id="btnMakeCall" onclick="makeCall()">打电话</button>
+		</p>
+		<button id="btnChk" onclick="chkCameraAndMic()">检查设备</button>
+		</P>
+		<button id="btnShow" onclick="showVideo()">显示画面</button>
+	</div>
+
+
+	<div id="container">
+		<div id="butelvideo"></div>
+	</div>
+</body>
+
+<script language="javascript"
+	src="http://www.butel.com/download/flash2.2/ButelNetCall.js"
+	type="text/javascript"></script>
+
+<script language="javascript" type="text/javascript">
+	function init() {
+		butelNetPhoneInit(640, 360, "div", "butelvideo");
+
+	}
+
+	function connVideo() {
+		console.log("开始登录");
+		//butelNetPhoneLogin(70047415, 2015013, "c31676e1769e4b018f112adbd152bf4c", "james");
+		butelNetPhoneLogin(80070599, 30529, "75cbefe71bd3474fa08755058261a5f9", "james");
+	}
+
+	function makeCall() {
+		console.log("打电话");
+		butelNetPhoneMakeCall("80070599", 'video', 'helloo', "99999999");
+	}
+
+	function chkCameraAndMic() {
+		butelNetPhoneCheckCamAndMic(true, true);
+	}
+	
+	function showVideo(){
+		butelNetPhoneSelfPreview(true);
+	}
+
+	//初始化成功的回调
+	function netPhoneReady() {
+		console.log("初始化成功.");
+		//butelNetPhoneLogPanal( true );	
+		butelNetPhoneLogPanal(true);
+	}
+
+	//登录成功的回调
+	function netPhoneLoginSuccess() {
+		console.log("登录成功.");
+	}
+
+	//登录失败的回调
+	function netPhoneLoginFailed(code, str) {
+		console.log("登录失败." + code + ":" + str);
+	}
+
+	//检查摄像头的回调
+	function netPhoneCheckCameraResult(cameraEnabled) {
+		console.log("检查摄像头." + cameraEnabled);
+	}
+
+	//检查麦克风的回调
+	function netPhoneCheckCameraResult(cameraEnabled) {
+		console.log("检查摄像头." + cameraEnabled);
+	}
+</script>
+</html>

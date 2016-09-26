@@ -47,12 +47,19 @@ public class IndexController  extends DispatcherServlet {
 	}
 	
 	
-	@RequestMapping(value = "/butelTest.do")
-	public ModelAndView butelTest() {
+	@RequestMapping(value = "/butelTestClient.do")
+	public ModelAndView butelTestClient() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("butel");
+		mav.setViewName("butelClient");
 		return mav;
 	}
 
+	
+	@RequestMapping(value = "/butelTestServer.do")
+	public ModelAndView butelTestServer() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("butelServer");
+		return mav;
+	}
 	
 }

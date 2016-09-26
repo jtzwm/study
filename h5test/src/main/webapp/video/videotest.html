@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	function hasGetUserMedia() {
+		// Note: Opera builds are unprefixed.
+		return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+	}
+
+	if (hasGetUserMedia()) {
+		//alert('支持视频');
+	} else {
+		alert('getUserMedia() is not supported in your browser');
+	}
+
+	function startVideo() {
+		var onFailSoHard = function(e) {
+			console.log('Reeeejected!', e);
+		};
+	    videoObj = {audio: true, video: true} ;
+
+		navigator.webkitGetUserMedia(videoObj, function(localMediaStream) {
+			  var video = document.querySelector('video');
+			  video.src = window.webkitURL.createObjectURL(localMediaStream);
+			}, onFailSoHard);
+		
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var video = document.getElementById('video');
+
+		// Trigger photo take
+		document.getElementById("snapButton").addEventListener("click", function() {
+			context.drawImage(video, 0, 0, 640, 480);
+		});
+	}
+</script>
+</head>
+<body>
+	h5视频标签测试
+	<p>
+		<button onclick="startVideo()">启动视频</button>
+		
+		
+<video id="video" width="640" height="480" autoplay></video>
+<button id="snapButton">Snap Photo</button>
+<canvas id="canvas" width="640" height="480"></canvas>
+</body>
+</html>
