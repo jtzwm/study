@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ContextLoader;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +28,7 @@ public class IndexController  extends DispatcherServlet {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("resultList",CustomeList);
+		
 		//mav.addObject("customerNo", "fuck freemarker");
 		mav.setViewName("f7test/index");
 		return mav;
@@ -34,6 +36,8 @@ public class IndexController  extends DispatcherServlet {
 	
 	@RequestMapping(value = "/index.do")
 	public ModelAndView showIndex() {
+		
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
 		return mav;

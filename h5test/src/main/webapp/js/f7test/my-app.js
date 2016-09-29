@@ -1,7 +1,7 @@
 require.config({
 	baseUrl: 'js/f7test',
 	paths: {
-		Framework7: '/h5test/js/libs/framework7',
+		Framework7: '/js/libs/framework7',
 		TestJs: 'test'
 
 	},

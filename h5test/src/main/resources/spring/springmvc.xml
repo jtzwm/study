@@ -15,13 +15,15 @@
 
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<context:component-scan base-package="com.zhuwm.h5.controller"></context:component-scan>
+
 	<context:component-scan base-package="com.zhuwm.h5.service"></context:component-scan>
-	
-	
-<!-- 	<bean name="/index.do" class="com.zhuwm.h5.controller.IndexController" />
-	<bean
-		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
- -->
+
+	<context:component-scan base-package="com.zhuwm.weixin.controller"></context:component-scan>
+	<context:component-scan base-package="com.zhuwm.weixin.service"></context:component-scan>
+
+	<!-- <bean name="/index.do" class="com.zhuwm.h5.controller.IndexController" 
+		/> <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" 
+		/> -->
 
 	<bean id="freemarkerConfigurer"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

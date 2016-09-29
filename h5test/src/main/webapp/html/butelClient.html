@@ -20,6 +20,8 @@
 		<button id="btnChk" onclick="chkCameraAndMic()">检查设备</button>
 		</P>
 		<button id="btnShow" onclick="showVideo()">显示画面</button>
+		</P>
+		<button id="btnShowLog" onclick="showLog()">显示日志</button>
 	</div>
 
 
@@ -55,6 +57,10 @@
 	
 	function showVideo(){
 		butelNetPhoneSelfPreview(true);
+	}
+	
+	function showLog(){
+		butelNetPhoneLogPanal(true);
 	}
 
 	//初始化成功的回调
