@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/libs/jquery-1.12.3.min.js"></script>
+<title>微信发送消息</title>
+<style type="text/css">
+body {
+	width: 720px;
+	margin: 0px auto
+}
+
+#box {
+	border: 1px solid;
+	width: 720px;
+	height: 300px;
+}
+
+#content {
+	border: 1px solid;
+	width: 300px;
+	height: 100px;
+}
+</style>
+<script type="text/javascript">
+	function sendGroupMsg() {
+		var msg = $("#msg").val();
+		var type= $('input:radio[name=weixintype]:checked').val();
+		
+		console.log(msg);
+
+		$.ajax({
+			type : "GET", //提交方式  
+			dataType : "json",
+			url : "ajaxSendMsg.do",//?msg=" + msg,//路径  
+			data : {
+				"msg" : msg,
+				"type":type
+			},//数据，这里使用的是Json格式进行传输  
+			success : function(result) {//返回数据根据结果进行相应的处理  
+				console.log("收到返回:" + result);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="box">
+		<div id="title">微信消息发送</div>
+		<div id="content">
+			消息内容:<input id="msg" type="text" />
+			<p>
+				测试号<input name="weixintype" type="radio" value="1"  checked="checked" />
+			<p>
+				信城通正式号<input name="weixintype" type="radio" value="2" />
+			<p>
+				<input type="button" value="群发" onclick="sendGroupMsg()" />
+		</div>
+
+
+
+
+
+
+	</div>
+</body>
+</html>
