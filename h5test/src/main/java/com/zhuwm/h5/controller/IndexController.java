@@ -2,6 +2,8 @@ package com.zhuwm.h5.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,11 @@ public class IndexController  extends DispatcherServlet {
 
 
 	@RequestMapping(value = "/f7index.do")
-	public ModelAndView preengageList() {
+	public ModelAndView preengageList(HttpServletRequest request) {
+		
+		//从微信跳转过来的，有openid。这个opendid是自己加到链接上的，不是微信平台传过来的
+		String openID=request.getParameter("openid");
+		System.out.println("======openid="+openID);
 		List CustomeList=indexService.queryCustomeList();
 		
 		ModelAndView mav = new ModelAndView();

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.ServletRequest;
@@ -17,7 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.zhuwm.weixin.service.CreateMenuService;
+import com.zhuwm.weixin.service.GroupMsgService;
 import com.zhuwm.weixin.service.WeiXinService;
 
 @Controller
@@ -25,6 +29,11 @@ public class WeiXinController extends DispatcherServlet {
 	
 	@Autowired
 	private WeiXinService weixinService;
+	@Autowired
+	GroupMsgService groupMsgService;
+	
+	@Autowired
+	CreateMenuService createMenuService;
 	
 	//加produces一段，是因为spring 缺省的handle，会对返回参数进行处理
 	@RequestMapping(value = "/weixin.do",produces = "text/plain;charset=UTF-8")
@@ -65,20 +74,48 @@ public class WeiXinController extends DispatcherServlet {
         
 	}	
 
-	@RequestMapping(value = "/weixin1.do")
-	@ResponseBody
-	public String weixinIndex1(String signature, String timestamp, String nonce, String echostr) throws NoSuchAlgorithmException {
-		String token = "zhuwm";
-		String tmpStr = getSHA1(token, timestamp, nonce);
+	@RequestMapping(value = "/sendMsg.do")
+	public ModelAndView sendMsg(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("weixin/index");
+		return mav;
 
-		System.out.println("===收到echostr:" + echostr);
-		System.out.println("===signature   " + signature);
+	}
+	
+	/**
+	 * 处理群发消息的ajax方法
+	 * @author littl
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody  	
+	@RequestMapping(value = "/ajaxSendMsg.do")
+	public ArrayList ajaxSendMsg(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("===收到ajax请求："+request.getParameter("msg"));
+		String type=request.getParameter("type");
+		groupMsgService.setType(type);
+		groupMsgService.sendMsgToAll();
+		ArrayList<String> resultList= new ArrayList<String>();
+		resultList.add("success");
+		return resultList;
 
-		if (tmpStr.equals(signature)) {
-			return echostr;
-		} else {
-			return null;
-		}
+	}
+	
+	/**
+	 * 创建自定义菜单的ajax方法
+	 * @author littl
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@ResponseBody  	
+	@RequestMapping(value = "/createMenu.do")
+	public ArrayList createMenu(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<String> resultList= new ArrayList<String>();
+		resultList.add("success");
+		return resultList;
+
 	}
 	
 	/**

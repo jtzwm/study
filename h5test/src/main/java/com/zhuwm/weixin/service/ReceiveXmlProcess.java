@@ -24,7 +24,7 @@ public class ReceiveXmlProcess {
 	            Iterator<?> iter = root.elementIterator();  
 	              
 	            // 遍历所有结点  
-	            msg = new ReceiveXmlEntity();  
+	            //msg = new ReceiveXmlEntity();  
 	            //利用反射机制，调用set方法  
 	            //获取该实体的元类型  
 	            Class<?> c = Class.forName("com.zhuwm.weixin.po.ReceiveXmlEntity");  
@@ -40,7 +40,6 @@ public class ReceiveXmlProcess {
 	                method.invoke(msg, ele.getText());  
 	            }  
 	        } catch (Exception e) {  
-	            // TODO: handle exception  
 	            System.out.println("xml 格式异常: "+ strXml);  
 	            e.printStackTrace();  
 	        }  
