@@ -112,6 +112,9 @@ public class WeiXinController extends DispatcherServlet {
 	@ResponseBody  	
 	@RequestMapping(value = "/createMenu.do")
 	public ArrayList createMenu(HttpServletRequest request, HttpServletResponse response) {
+		
+		createMenuService.createMenu();
+		
 		ArrayList<String> resultList= new ArrayList<String>();
 		resultList.add("success");
 		return resultList;
