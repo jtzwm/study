@@ -21,8 +21,31 @@ body {
 	width: 300px;
 	height: 150px;
 }
+
+#content1 {
+	border: 1px solid;
+	width: 300px;
+	height: 50px;
+}
 </style>
 <script type="text/javascript">
+
+	function sendMsg(openid){
+		console.log(openid);
+		$.ajax({
+			type : "GET", //提交方式  
+			dataType : "json",
+			url : "sendMsgToUser.do",//?msg=" + msg,//路径  
+			data : {
+				"openid" : openid,
+				//"type":type
+			},//数据，这里使用的是Json格式进行传输  
+			success : function(result) {//返回数据根据结果进行相应的处理  
+				console.log("收到返回:" + result);
+			}
+		});
+		
+	}
 	function sendGroupMsg() {
 		var msg = $("#msg").val();
 		var type= $('input:radio[name=weixintype]:checked').val();
@@ -55,6 +78,25 @@ body {
 			}
 		});
 	}
+	
+	function getUserList(){
+		$.ajax({
+			type : "GET", //提交方式  
+			dataType : "json",
+			url : "getUserList.do",//?msg=" + msg,//路径  
+			data : {
+			},//数据，这里使用的是Json格式进行传输  
+			success : function(result) {//返回数据根据结果进行相应的处理  
+				console.log("收到返回:" + result);
+				var obj=jQuery.parseJSON(result);
+				 $.each(obj.data.openid, function (n, value) {
+					 console.log(n+"---"+value);
+					 $("#userlist").append("<a href='#' onclick=sendMsg('"+value+"')>"+value+"</a><br>");
+				 });
+				// <a href="#" onclick="sendMsg('1111')">1111</a>
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -72,10 +114,19 @@ body {
 
 
 		<div id="title">自定义菜单</div>
-		<div id="content">
+		<div id="content1">
 			<input type="button" value="创建菜单" onclick="createMenu()" />
 		</div>
 
+
+		<div id="title">获取用户列表</div>
+		<div id="content1">
+			<input type="button" value="获取用户列表" onclick="getUserList()" />
+		</div>
+		<div id="title">用户列表</div>
+		<div id="userlist">
+			
+		</div>
 
 
 

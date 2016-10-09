@@ -21,9 +21,12 @@ public class AccessTokenOperator {
 	public static String getAccessToken(String appid, String secret) {
 		
 		if (access_token == null || isExpired()==true) {
+
 			access_token = getAccessTokenFromHttp(appid, secret);
+			System.out.println("=======过期后重新取token："+access_token);
 			GetAccessToken_Time = System.currentTimeMillis();
 		} 
+		System.out.println("=======直接返回token："+access_token);
 		return access_token;
 	}
 	

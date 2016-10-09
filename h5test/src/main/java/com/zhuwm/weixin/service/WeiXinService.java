@@ -1,5 +1,6 @@
 package com.zhuwm.weixin.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
@@ -34,14 +35,25 @@ public class WeiXinService {
         	//图文消息
         	resopenseResult = ResopnseMsgGenerator.generateNewsMsg(xmlEntity);
         } else if("event".endsWith(xmlEntity.getMsgType())){
-        	
-        	if("subscribe".equals(xmlEntity.getEvent())){
+        	String event=xmlEntity.getEvent();
+        	if("subscribe".equals(event)){
         		//订阅事件
         		System.out.println("+++收到关注事件:"+xmlEntity.getFromUserName());
         		resopenseResult = ResopnseMsgGenerator.generateNewsMsg(xmlEntity);
-        	}else{
+        	}else if("unsubscribe".equals(event)){
         		//取消订阅事件
         		System.out.println("+++收到取消关注事件:"+xmlEntity.getFromUserName());
+        	}else if("CLICK".equals(event)){
+        		//自定义菜单点击的事件
+        		System.out.println("+++收到click事件:"+xmlEntity.getEventKey());
+        		//获取自定义的素材并发送
+        		try {
+					String strResponse=ContentOpertor.getContentsList();
+					System.out.println("+++获取素材列表，返回消息为："+strResponse);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	}
         }
           

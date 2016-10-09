@@ -2,33 +2,61 @@ package com.zhuwm.weixin.service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.zhuwm.weixin.po.TemplateData;
+import com.zhuwm.weixin.po.WxTemplateMsg;
+
 @Service
-public class GroupMsgService {
+public class MsgService {
 	
 	private String access_token="";
 	private String type;
-
-	public void sendMsgToAll() {
-		testsendTextByOpenids();
-	}
 	
-	public void testsendTextByOpenids(){
-        String reqjson =createGroupText(getOpenids());
+	
+	public String sendMsgToUser(String openId) {
+		//无法主动发送消息，只能发送模板消息
+		String token= AccessTokenOperator.getAccessToken(Constant.getAppid(), Constant.getSecret());
+		String url="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+token;
+		String msg=createText(openId);
+		System.out.println("===向单个用户发送模板消息:"+msg);
+		String response=null;
+		try {
+			response = HttpUtil.httpPost(url, msg);
+			System.out.println("===向单个用户发送消息："+response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	
+	public void sendMsgToAll() {
+       
 		
         String urlstr ="https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=ACCESS_TOKEN";
         urlstr=urlstr.replace("ACCESS_TOKEN", access_token);
 
+        String reqjson =createGroupText(getOpenids());
         System.out.println("===生成群发json："+reqjson);
+        
         try {
+			HttpUtil.httpPost(urlstr, reqjson);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        /*try {
              
             URL httpclient =new URL(urlstr);
             HttpURLConnection conn =(HttpURLConnection) httpclient.openConnection();
@@ -56,7 +84,7 @@ public class GroupMsgService {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } 
+        } */
     }
 	
     private String createGroupText(JSONArray array){
@@ -67,6 +95,25 @@ public class GroupMsgService {
         text.put("content", "群发测试.");
         gjson.put("text", text);
        return gjson.toString();
+   }
+    
+    
+    private String createText(String openid){
+    	WxTemplateMsg msg = new WxTemplateMsg();  
+    	msg.setTouser(openid);
+    	msg.setTemplate_id("5T8gInRZmEGcrg1x67-rMs2_h4XfZVgKKbW-PW656xQ");
+    	msg.setUrl("http://15z8j42945.iask.in/f7index.do");
+    	
+    	Map<String,TemplateData> m = new HashMap<String,TemplateData>();  
+    	TemplateData amount = new TemplateData(); 
+    	amount.setColor("#173177");
+    	amount.setValue("100000");
+    	m.put("amount", amount);
+    	
+    	msg.setData(m);
+    	
+    	JSONObject object =new JSONObject(msg);
+    	return object.toString();
    }
 
 	
