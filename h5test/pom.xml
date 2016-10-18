@@ -203,6 +203,12 @@
 			<artifactId>json</artifactId>
 			<version>20160810</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.hynnet/jacob -->
+		<dependency>
+			<groupId>com.hynnet</groupId>
+			<artifactId>jacob</artifactId>
+			<version>1.18</version>
+		</dependency>
 
 
 
