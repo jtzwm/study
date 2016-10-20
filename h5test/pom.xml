@@ -4,7 +4,7 @@
 	<groupId>com.zhuwm</groupId>
 	<artifactId>h5test</artifactId>
 
-	<packaging>war</packaging>
+	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>h5test Maven Webapp</name>
 	<url>http://maven.apache.org</url>
