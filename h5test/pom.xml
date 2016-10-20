@@ -211,7 +211,4 @@
 	<build>
 		<finalName>h5test</finalName>
 	</build>
-	<modules>
-		<module>?</module>
-	</modules>
 </project>
