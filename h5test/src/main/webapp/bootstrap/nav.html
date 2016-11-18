@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>测试</title>
+		<!--		<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+		<link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div class="container">
+			<ul id="tabs" class="nav nav-pills nav-justified" role="tablist">
+				<li role="presentation" class="active"><a href="#">Home</a></li>
+				<li role="presentation" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">hello
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li role="presentation"><a href="#" role="menuitem" tabindex="-1">hello1 </a></li>
+						<li role="presentation"><a href="#" role="menuitem" tabindex="-1">hello1 </a></li>
+						<li role="presentation"><a href="#" role="menuitem" tabindex="-1">hello1 </a></li>
+						<li role="presentation"><a href="#" role="menuitem" tabindex="-1">hello1 </a></li>
+					</ul>
+				</li>
+				
+				
+				<li role="presentation" class="disabled"><a href="#">world</a></li>
+				
+			</ul>
+		</div>
+		
+		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script>
+			$("#tabs a").click(function(e){
+				e.preventDefault();
+				$(this).tab("show");
+			})
+		</script>
+	</body>
+
+</html>

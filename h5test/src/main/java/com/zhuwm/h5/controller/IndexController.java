@@ -72,4 +72,6 @@ public class IndexController  extends DispatcherServlet {
 		return mav;
 	}
 	
+
+	
 }
