@@ -45,6 +45,13 @@ public class FlowController  extends DispatcherServlet {
 		return mav;
 	}
 	
-
+	@RequestMapping(value = "/info.do")
+	public ModelAndView infoController(HttpServletRequest request) {
+		String bizCode=request.getParameter("bizCode");
+		System.out.println("===redirect，获取bizCode:"+bizCode);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("info");
+		return mav;
+	}
 	
 }

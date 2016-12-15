@@ -13,14 +13,11 @@ public class BizFlowControlDAO {
 	private static Map<String, Flow> flowData = null;
 	private static Map<String, Node> nodeData = null;
 	private static Map<String,String> firstNodeOfFlow =null;
+	static{
+		init();
+	}
 
 	public String getLastNode(String bizCode,String flowType) {
-
-		if (bizData == null) {
-			init();
-		}
-		
-
 		
 		for(BizFlowNode value:bizData.values()){
 			if(flowType.equals(value.getFlowCode()) && bizCode.equals(value.getBizCode())){
@@ -31,7 +28,7 @@ public class BizFlowControlDAO {
 	}
 	
 	public String getFirstNodeOfFlow(String flowCode){
-			return firstNodeOfFlow.get("flowType");
+			return firstNodeOfFlow.get(flowCode);
 	}
 
 	public Flow getFlow(String flowCode,String nodeCode) {
@@ -48,8 +45,8 @@ public class BizFlowControlDAO {
 	private static void init() {
 
 		bizData=new HashMap<String, BizFlowNode>();		
-		//BizFlowNode biz1 = new BizFlowNode("A", "1", "00001");
-		//bizData.put("00001", biz1);
+		BizFlowNode biz1 = new BizFlowNode("A", "1", "00001");
+		bizData.put("00001", biz1);
 		
 		flowData = new HashMap<String, Flow>();
 		Flow flow1 = new Flow("A","1","2",1,0);
@@ -58,6 +55,7 @@ public class BizFlowControlDAO {
 		flowData.put("A:1", flow1);
 		flowData.put("A:2", flow2);
 		flowData.put("A:3", flow3);
+		
 		firstNodeOfFlow = new HashMap<String,String>();
 		firstNodeOfFlow.put("A", "1");
 		
