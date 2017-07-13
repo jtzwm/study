@@ -34,6 +34,7 @@ public class FlowController  extends DispatcherServlet {
 		System.out.println("===通过流程控制器，获取bizCode:"+bizCode+",下一节点url为："+nextUrl);
 		return "redirect:/"+nextUrl+"?bizCode="+bizCode+"&flowType="+flowType;
 		
+		
 	}
 	
 	@RequestMapping(value = "/appoint.do")

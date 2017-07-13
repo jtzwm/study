@@ -118,30 +118,30 @@ public class ReadWordService {
 	public void readReadWordFile(){
 		
 		try {
-			String fileName="d:\\temp\\中融信托-集合资金信托信托合同范本2.doc";
+			String fileName="d:\\temp\\中融信托-集合资金信托信托合同范本.doc";
 			//String fileName="d:\\temp\\temp.doc";
 			InputStream is =new FileInputStream(fileName);
 			HWPFDocument doc = new HWPFDocument(is); 
 			Range range = doc.getRange();  
 			
 			//删除文档多余的属性，避免生成html的meta属性
-			deleteProperties(doc);
+			//deleteProperties(doc);
 			
 			//删除所有bookmark
 			deleteBookmarks(doc.getBookmarks());					
 			//替换所有变量
-			replaceVariable(range);
+			//replaceVariable(range);
 			//找到并删除指宝文字后的段落
 			deleteRange(doc, range);
 
 			//生成html，并处理html
-			generateHtml(doc);
+			//generateHtml(doc);
 						
 			//将html转成pdf
-			new ConvertHtml2PDF().convert("D:\\temp\\out_new.html");
+			//new ConvertHtml2PDF().convert("D:\\temp\\out_new.html");
 
 			System.out.println("*********重新输出 "+doc.getRange().numParagraphs());
-			//doc.write(new FileOutputStream("D:\\temp\\out.doc"));
+			doc.write(new FileOutputStream("D:\\temp\\out.doc"));
 			is.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -149,11 +149,7 @@ public class ReadWordService {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
 		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
 			e.printStackTrace();
 		}finally {
 			
@@ -248,19 +244,22 @@ Elements metas1 = doc.select("meta[http-equiv$=Content-Type]");
 		System.out.println("==字符数"+doc.getRange().getEndOffset());
 		String strTemp="";
 		Paragraph paragraph=null;
+		Range tempRange=null;
 		int deleteIndex=0;
-		for(int i=0;i<paraNum; i++){
-			System.out.println("=====段落"+(i+1)+":"+range.getParagraph(i));
+		for(int i=1;i<=paraNum; i++){
+			System.out.println("=====段落"+(i)+":"+range.getParagraph(i));
 			
 			paragraph=range.getParagraph(i);
 			strTemp=paragraph.text();
 			System.out.println(strTemp);
+			
+		
 			if(strTemp.indexOf("以下无正文")!=-1){
-				System.out.println("*********找到以下无正文，在第"+(i+1)+"段");
-				deleteIndex=i;
+				System.out.println("*********找到以下无正文，在第"+(i)+"段");
+				deleteIndex=1;
 				Range rangeNew=new Range(range.getParagraph(i+1).getStartOffset(),range.getEndOffset(),doc);
+				rangeNew.delete();		
 				
-				rangeNew.delete();
 				break;
 			};
 		}
@@ -285,4 +284,9 @@ Elements metas1 = doc.select("meta[http-equiv$=Content-Type]");
 	public void replaceVariable(Range range){
 		range.replaceText("${contract_no}", "替换后的合同号");
 	}
+	public static void main(String[] args) {
+		ReadWordService readWordService= new ReadWordService();
+		readWordService.readReadWordFile();
+	}
+
 }
