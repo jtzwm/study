@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.44.129:3306/zhuwm
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapping.xml
+  type-aliases-package: com.zhuwm.firstspringboot.entity
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
